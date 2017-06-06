@@ -43,12 +43,12 @@ public class StringManipulating {
         int count = 0;
         String newString = null;
         while (index >= 0) {
+            if (count == occurence - 1) {
+                newString = str.substring(0, index) + toReplace + str.substring(index + toReplace.length());
+                break;
+            }
             index = str.indexOf(toSearch, index + toSearch.length());
             count++;
-
-            if (count == occurence - 1) {
-                newString = str.substring(0, index) + toReplace + str.substring(index + toReplace.length()-1);
-            }
             
         }
         return newString;
