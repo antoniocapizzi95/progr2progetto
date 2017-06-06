@@ -25,17 +25,33 @@ public class StringManipulating {
         }
         return count;
     }
-    
-   public String replaceToUpper(String str, String toReplace) {
-       String modified = null;
-       modified = str.replace(toReplace, toReplace.toUpperCase());
-       return modified;
-   }
-   
-   public String replaceToLower(String str, String toReplace) {
-       String modified = null;
-       modified = str.replace(toReplace, toReplace.toLowerCase());
-       return modified;
-   }
+
+    public String replaceToUpper(String str, String toReplace) {
+        String modified = null;
+        modified = str.replace(toReplace, toReplace.toUpperCase());
+        return modified;
+    }
+
+    public String replaceToLower(String str, String toReplace) {
+        String modified = null;
+        modified = str.replace(toReplace, toReplace.toLowerCase());
+        return modified;
+    }
+
+    public String replaceOccurence(String str, String toSearch, String toReplace, int occurence) {
+        int index = str.indexOf(toSearch);
+        int count = 0;
+        String newString = null;
+        while (index >= 0) {
+            index = str.indexOf(toSearch, index + toSearch.length());
+            count++;
+
+            if (count == occurence - 1) {
+                newString = str.substring(0, index) + toReplace + str.substring(index + toReplace.length()-1);
+            }
+            
+        }
+        return newString;
+    }
 
 }
