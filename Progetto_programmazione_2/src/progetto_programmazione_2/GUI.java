@@ -5,12 +5,16 @@
  */
 package progetto_programmazione_2;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
 /**
  *
  * @author Antonio
  */
 public class GUI extends javax.swing.JFrame {
-    
+
     String originalTxt = null;
     String modifiedTxt = null;
 
@@ -36,7 +40,7 @@ public class GUI extends javax.swing.JFrame {
         replaceButton = new javax.swing.JButton();
         labelToInput = new javax.swing.JTextField();
         labelToReplace = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        saveButton = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         searchAndCountButton = new javax.swing.JButton();
@@ -44,6 +48,10 @@ public class GUI extends javax.swing.JFrame {
         toUpperButton = new javax.swing.JButton();
         javax.swing.JButton toLowerButton = new javax.swing.JButton();
         replaceOccButton = new javax.swing.JButton();
+        fieldOccurence = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        appendHeadButton = new javax.swing.JButton();
+        appendTailButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,14 +66,19 @@ public class GUI extends javax.swing.JFrame {
 
         readText.setText("Preview");
 
-        replaceButton.setText("Replace with");
+        replaceButton.setText("Replace all with");
         replaceButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 replaceButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Save");
+        saveButton.setText("Save");
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveButtonActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Preview");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -99,6 +112,22 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setText("Occurence");
+
+        appendHeadButton.setText("Append head");
+        appendHeadButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                appendHeadButtonActionPerformed(evt);
+            }
+        });
+
+        appendTailButton.setText("Append tail");
+        appendTailButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                appendTailButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -109,6 +138,32 @@ public class GUI extends javax.swing.JFrame {
                         .addGap(24, 24, 24)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(labelToInput)
+                                    .addComponent(searchAndCountButton, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(35, 35, 35)
+                                        .addComponent(appendHeadButton)
+                                        .addGap(37, 37, 37)
+                                        .addComponent(appendTailButton)
+                                        .addGap(65, 65, 65)
+                                        .addComponent(toUpperButton)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(toLowerButton))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(replaceButton)
+                                        .addGap(33, 33, 33)
+                                        .addComponent(labelToReplace, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(replaceOccButton)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel2)
+                                            .addComponent(fieldOccurence, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(readText, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
@@ -116,29 +171,14 @@ public class GUI extends javax.swing.JFrame {
                                         .addComponent(searchLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jLabel3)
                                     .addComponent(jButton1))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 246, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(labelToInput)
-                                    .addComponent(searchAndCountButton, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
-                                .addGap(160, 160, 160)
-                                .addComponent(replaceButton)
-                                .addGap(30, 30, 30)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(toUpperButton)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(toLowerButton))
-                                    .addComponent(labelToReplace))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(replaceOccButton))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 246, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(0, 554, Short.MAX_VALUE)
-                                .addComponent(jButton2)))
+                                .addComponent(saveButton)))
                         .addGap(41, 41, 41)
                         .addComponent(jButton4)))
                 .addGap(111, 111, 111))
@@ -151,25 +191,30 @@ public class GUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(saveButton))
                 .addGap(18, 18, 18)
                 .addComponent(readText, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
                 .addComponent(jButton4)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2))
                 .addGap(2, 2, 2)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelToInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(replaceButton)
                     .addComponent(labelToReplace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(replaceOccButton))
+                    .addComponent(replaceOccButton)
+                    .addComponent(fieldOccurence, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(searchAndCountButton)
                     .addComponent(toUpperButton)
-                    .addComponent(toLowerButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(toLowerButton)
+                    .addComponent(appendHeadButton)
+                    .addComponent(appendTailButton))
+                .addGap(60, 60, 60)
                 .addComponent(searchLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(217, 217, 217))
         );
@@ -186,20 +231,19 @@ public class GUI extends javax.swing.JFrame {
 
     private void replaceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_replaceButtonActionPerformed
         // TODO add your handling code here:
-        if(this.modifiedTxt == null || this.labelToInput.getText() == null || this.labelToReplace.getText() == null) {
+        if (this.modifiedTxt == null || this.labelToInput.getText() == null || this.labelToReplace.getText() == null) {
             //error
         } else {
-                StringManipulating man = new StringManipulating();
-                this.modifiedTxt = man.replace(this.originalTxt, this.labelToInput.getText(), this.labelToReplace.getText());
-            }
+            StringManipulating man = new StringManipulating();
+            this.modifiedTxt = man.replace(this.modifiedTxt, this.labelToInput.getText(), this.labelToReplace.getText());
+        }
     }//GEN-LAST:event_replaceButtonActionPerformed
 
     private void previewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previewButtonActionPerformed
         // TODO add your handling code here:
-        if(this.modifiedTxt != null) {
+        if (this.modifiedTxt != null) {
             this.readText.setText(this.modifiedTxt);
-        }
-        else {
+        } else {
             //error
         }
     }//GEN-LAST:event_previewButtonActionPerformed
@@ -209,7 +253,7 @@ public class GUI extends javax.swing.JFrame {
         StringManipulating man = new StringManipulating();
         int count;
         count = man.searchAndCount(modifiedTxt, this.labelToInput.getText());
-        this.searchLabel.setText("This string is present: "+Integer.toString(count)+" times");
+        this.searchLabel.setText("This string is present: " + Integer.toString(count) + " times");
     }//GEN-LAST:event_searchAndCountButtonActionPerformed
 
     private void toUpperButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toUpperButtonActionPerformed
@@ -219,8 +263,46 @@ public class GUI extends javax.swing.JFrame {
     private void replaceOccButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_replaceOccButtonActionPerformed
         // TODO add your handling code here:
         StringManipulating man = new StringManipulating();
-        String test = man.replaceOccurence(this.modifiedTxt, this.labelToInput.getText(), this.labelToReplace.getText(), 2);
+        int occurence = Integer.parseInt(this.fieldOccurence.getText());
+        int count;
+        count = man.searchAndCount(modifiedTxt, this.labelToInput.getText());
+        if ((this.fieldOccurence.getText() != null || this.fieldOccurence.getText().length() != 0) && occurence > 0 && occurence <= count) {
+            this.modifiedTxt = man.replaceOccurence(this.modifiedTxt, this.labelToInput.getText(), this.labelToReplace.getText(), occurence);
+        } else {
+            //error
+        }
+
     }//GEN-LAST:event_replaceOccButtonActionPerformed
+
+    private void appendTailButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_appendTailButtonActionPerformed
+        // TODO add your handling code here:
+        StringManipulating man = new StringManipulating();
+        this.modifiedTxt = man.appendTail(this.modifiedTxt, this.labelToInput.getText());
+    }//GEN-LAST:event_appendTailButtonActionPerformed
+
+    private void appendHeadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_appendHeadButtonActionPerformed
+        // TODO add your handling code here:
+        StringManipulating man = new StringManipulating();
+        this.modifiedTxt = man.appendHead(this.modifiedTxt, this.labelToInput.getText());
+    }//GEN-LAST:event_appendHeadButtonActionPerformed
+
+    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+        // TODO add your handling code here:
+        BufferedWriter writer = null;
+        try {
+            writer = new BufferedWriter(new FileWriter("C:\\Users\\Antonio\\Desktop\\modified.txt"));
+            writer.write(this.modifiedTxt);
+
+        } catch (IOException e) {
+        } finally {
+            try {
+                if (writer != null) {
+                    writer.close();
+                }
+            } catch (IOException e) {
+            }
+        }
+    }//GEN-LAST:event_saveButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -258,16 +340,20 @@ public class GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton appendHeadButton;
+    private javax.swing.JButton appendTailButton;
+    private javax.swing.JTextField fieldOccurence;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField labelToInput;
     private javax.swing.JTextField labelToReplace;
     private javax.swing.JLabel readText;
     private javax.swing.JButton replaceButton;
     private javax.swing.JButton replaceOccButton;
+    private javax.swing.JButton saveButton;
     private javax.swing.JButton searchAndCountButton;
     private javax.swing.JLabel searchLabel;
     private javax.swing.JButton toUpperButton;

@@ -11,9 +11,17 @@ package progetto_programmazione_2;
  */
 public class StringManipulating {
 
-    public String replace(String a, String b, String c) {
-        a = a.replace(b, c);
-        return a;
+    public String replace(String str, String toSearch, String toReplace) {
+        int index = str.indexOf(toSearch);
+        String newString = str;
+        while (index >= 0) {
+
+            newString = newString.substring(0, index) + toReplace + newString.substring(index + toSearch.length());
+
+            index = newString.indexOf(toSearch, index + toSearch.length());
+
+        }
+        return newString;
     }
 
     public int searchAndCount(String str, String toSearch) {
@@ -44,13 +52,23 @@ public class StringManipulating {
         String newString = null;
         while (index >= 0) {
             if (count == occurence - 1) {
-                newString = str.substring(0, index) + toReplace + str.substring(index + toReplace.length());
+                newString = str.substring(0, index) + toReplace + str.substring(index + toSearch.length());
                 break;
             }
             index = str.indexOf(toSearch, index + toSearch.length());
             count++;
-            
+
         }
+        return newString;
+    }
+
+    public String appendHead(String str, String toAppend) {
+        String newString = toAppend + str;
+        return newString;
+    }
+
+    public String appendTail(String str, String toAppend) {
+        String newString = str + toAppend;
         return newString;
     }
 
