@@ -48,6 +48,7 @@ public class ReplaceDialog extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         fieldOccurence = new javax.swing.JTextField();
         replaceOccButton = new javax.swing.JButton();
+        errorLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -75,17 +76,19 @@ public class ReplaceDialog extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(countLabel)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(replaceAllButton)
-                        .addGap(48, 48, 48)
-                        .addComponent(jLabel2)
-                        .addGap(81, 81, 81)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(fieldOccurence, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(replaceOccButton, javax.swing.GroupLayout.Alignment.TRAILING))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(errorLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(countLabel)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(replaceAllButton)
+                            .addGap(48, 48, 48)
+                            .addComponent(jLabel2)
+                            .addGap(81, 81, 81)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel3)
+                                .addComponent(fieldOccurence, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(replaceOccButton, javax.swing.GroupLayout.Alignment.TRAILING)))))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -102,7 +105,9 @@ public class ReplaceDialog extends javax.swing.JDialog {
                 .addComponent(fieldOccurence, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(replaceOccButton)
-                .addContainerGap(116, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(errorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
         pack();
@@ -125,10 +130,11 @@ public class ReplaceDialog extends javax.swing.JDialog {
         if ((this.fieldOccurence.getText() != null || this.fieldOccurence.getText().length() != 0) && occurence > 0 && occurence <= count) {
             this.text = man.replaceOccurence(this.text, this.toSearch, this.toReplace, occurence);
             StringManipulating.modifiedTxt = this.text;
+            this.setVisible(false);
         } else {
-            //error
+            this.errorLabel.setText("Error: insert a number between 1 and "+Integer.toString(count)+" in the occurence field");
         }
-        this.setVisible(false);
+        
     }//GEN-LAST:event_replaceOccButtonActionPerformed
 
     /**
@@ -175,6 +181,7 @@ public class ReplaceDialog extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel countLabel;
+    private javax.swing.JLabel errorLabel;
     private javax.swing.JTextField fieldOccurence;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

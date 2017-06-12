@@ -65,7 +65,7 @@ public class GUI extends javax.swing.JFrame {
 
         readText.setText("Preview");
 
-        replaceButton.setText("Replace all with");
+        replaceButton.setText("Replace with");
         replaceButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 replaceButtonActionPerformed(evt);
@@ -213,17 +213,23 @@ public class GUI extends javax.swing.JFrame {
 
     private void replaceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_replaceButtonActionPerformed
         // TODO add your handling code here:
-        JFrame f = new JFrame();
-        ReplaceDialog repDial = new ReplaceDialog(f,true,this.modifiedTxt,this.labelToInput.getText(),this.labelToReplace.getText());
-        repDial.setModal(true);
-        repDial.setVisible(true);
-        this.modifiedTxt = StringManipulating.modifiedTxt;
-        /*if (this.modifiedTxt == null || this.labelToInput.getText() == null || this.labelToReplace.getText() == null) {
+        if (this.labelToInput.getText() == null || this.labelToReplace.getText() == null) {
             //error
         } else {
-            StringManipulating man = new StringManipulating();
-            this.modifiedTxt = man.replace(this.modifiedTxt, this.labelToInput.getText(), this.labelToReplace.getText());
-        }*/
+            int count = StringManipulating.searchAndCount(this.modifiedTxt, this.labelToInput.getText());
+            if (count == 1) {
+                StringManipulating man = new StringManipulating();
+                this.modifiedTxt = man.replace(this.modifiedTxt, this.labelToInput.getText(), this.labelToReplace.getText());
+            } else {
+                JFrame f = new JFrame();
+                ReplaceDialog repDial = new ReplaceDialog(f, true, this.modifiedTxt, this.labelToInput.getText(), this.labelToReplace.getText());
+                repDial.setModal(true);
+                repDial.setVisible(true);
+                this.modifiedTxt = StringManipulating.modifiedTxt;
+            }
+        }
+
+
     }//GEN-LAST:event_replaceButtonActionPerformed
 
     private void previewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previewButtonActionPerformed
