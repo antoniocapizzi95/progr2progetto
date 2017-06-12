@@ -213,10 +213,11 @@ public class GUI extends javax.swing.JFrame {
 
     private void replaceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_replaceButtonActionPerformed
         // TODO add your handling code here:
-        if (this.labelToInput.getText() == null || this.labelToReplace.getText() == null) {
+        int count = StringManipulating.searchAndCount(this.modifiedTxt, this.labelToInput.getText());
+        if (this.labelToInput.getText().equals("") || this.labelToReplace.getText().equals("") || count==0) {
             //error
         } else {
-            int count = StringManipulating.searchAndCount(this.modifiedTxt, this.labelToInput.getText());
+            
             if (count == 1) {
                 StringManipulating man = new StringManipulating();
                 this.modifiedTxt = man.replace(this.modifiedTxt, this.labelToInput.getText(), this.labelToReplace.getText());
