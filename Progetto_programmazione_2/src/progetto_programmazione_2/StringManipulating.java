@@ -10,7 +10,7 @@ package progetto_programmazione_2;
  * @author Antonio
  */
 public class StringManipulating {
-    
+
     public static String modifiedTxt = null;
 
     public String replace(String str, String toSearch, String toReplace) {
@@ -27,12 +27,19 @@ public class StringManipulating {
     }
 
     public static int searchAndCount(String str, String toSearch) {
-        int index = str.indexOf(toSearch);
+        int index;
         int count = 0;
-        while (index >= 0) {
-            index = str.indexOf(toSearch, index + toSearch.length());
-            count++;
+        if (toSearch.equals("")) {
+
+        } else {
+            index = str.indexOf(toSearch);
+            count = 0;
+            while (index >= 0) {
+                index = str.indexOf(toSearch, index + toSearch.length());
+                count++;
+            }
         }
+
         return count;
     }
 

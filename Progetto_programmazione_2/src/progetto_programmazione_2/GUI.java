@@ -214,10 +214,12 @@ public class GUI extends javax.swing.JFrame {
     private void replaceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_replaceButtonActionPerformed
         // TODO add your handling code here:
         int count = StringManipulating.searchAndCount(this.modifiedTxt, this.labelToInput.getText());
-        if (this.labelToInput.getText().equals("") || this.labelToReplace.getText().equals("") || count==0) {
-            //error
+        if (this.labelToInput.getText().equals("") || this.labelToReplace.getText().equals("") || count == 0) {
+            JFrame f = new JFrame();
+            ErrorDialog error = new ErrorDialog(f, true, "Some field is empty");
+            error.setVisible(true);
         } else {
-            
+
             if (count == 1) {
                 StringManipulating man = new StringManipulating();
                 this.modifiedTxt = man.replace(this.modifiedTxt, this.labelToInput.getText(), this.labelToReplace.getText());
