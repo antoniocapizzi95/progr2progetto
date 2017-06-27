@@ -9,6 +9,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 
 /**
@@ -207,8 +208,9 @@ public class GUI extends javax.swing.JFrame {
     private void importButton(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importButton
         // TODO add your handling code here:
         ImportTextFile file = new ImportTextFile();
-        this.originalTxt = file.importFile();
-        this.modifiedTxt = file.importFile();
+        file.selectFile();
+        this.originalTxt = file.getTextFile();
+        this.modifiedTxt = file.getTextFile();
     }//GEN-LAST:event_importButton
 
     private void replaceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_replaceButtonActionPerformed
@@ -270,20 +272,40 @@ public class GUI extends javax.swing.JFrame {
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         // TODO add your handling code here:
-        BufferedWriter writer = null;
-        try {
-            writer = new BufferedWriter(new FileWriter("C:\\Users\\Antonio\\Desktop\\modified.txt"));
-            writer.write(this.modifiedTxt);
 
-        } catch (IOException e) {
-        } finally {
-            try {
-                if (writer != null) {
-                    writer.close();
-                }
-            } catch (IOException e) {
+        JFrame f = new JFrame();
+        SaveDialog saveDialog = new SaveDialog(f, true);
+        saveDialog.setVisible(true);
+        if (saveDialog.save) {
+            JFileChooser chooser = new JFileChooser();
+            chooser.setCurrentDirectory(new java.io.File("."));
+            chooser.setDialogTitle("Select a path to save");
+            chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+            chooser.setAcceptAllFileFilterUsed(false);
+            String path = null;
+            if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+                path = chooser.getSelectedFile().toString();
+            } else {
+                System.out.println("No Selection ");
             }
+            BufferedWriter writer = null;
+            try {
+                writer = new BufferedWriter(new FileWriter(path + "\\" +saveDialog.getNameOfFile()+".txt"));
+                writer.write(this.modifiedTxt);
+
+            } catch (IOException e) {
+            } finally {
+                try {
+                    if (writer != null) {
+                        writer.close();
+                    }
+                } catch (IOException e) {
+                }
+            }
+        } else {
+            
         }
+
     }//GEN-LAST:event_saveButtonActionPerformed
 
     /**

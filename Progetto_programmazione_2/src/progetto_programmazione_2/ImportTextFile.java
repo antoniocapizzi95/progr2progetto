@@ -6,25 +6,55 @@
 package progetto_programmazione_2;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 
 /**
  *
  * @author Antonio
  */
 public class ImportTextFile {
-    
-    public static String textFile = null;
 
-    public static String importFile() {
+    public String textFile = null;
+
+    public String getTextFile() {
+        return this.textFile;
+    }
+
+    public void setTextFile(String textFile) {
+        this.textFile = textFile;
+    }
+
+    public void selectFile() {
+        JFileChooser chooser = new JFileChooser();
+        chooser.setCurrentDirectory(new java.io.File("."));
+        chooser.setDialogTitle("Select a txt file");
+        chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        chooser.setAcceptAllFileFilterUsed(false);
+        String path = null;
+        File selectedFile;
+
+        if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+            
+            selectedFile = chooser.getSelectedFile();
+            path = selectedFile.getAbsolutePath();
+          
+        } else {
+            System.out.println("No Selection ");
+        }
+        this.importFile(path);
+    }
+
+    private void importFile(String path) {
 
         FileReader f = null;
         try {
-            f = new FileReader("C:\\Users\\Antonio\\Desktop\\prova.txt");
+            f = new FileReader(path);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(ImportTextFile.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -49,7 +79,7 @@ public class ImportTextFile {
                     fileContent = s;
                     firstLine = false;
                 } else {
-                    
+
                     s = b.readLine();
                     if (s == null) {
                         break;
@@ -59,12 +89,8 @@ public class ImportTextFile {
             } catch (IOException ex) {
                 Logger.getLogger(ImportTextFile.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-            
+
         }
-        ImportTextFile.textFile = fileContent;
-        return fileContent;
+        this.setTextFile(fileContent);
     }
 }
-        
-    
