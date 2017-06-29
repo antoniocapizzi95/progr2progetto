@@ -13,7 +13,7 @@ public class StringManipulating {
 
     public static String modifiedTxt = null;
 
-    public String replace(String str, String toSearch, String toReplace) {
+    public static String replace(String str, String toSearch, String toReplace) {
         int index = str.indexOf(toSearch);
         String newString = str;
         while (index >= 0) {
@@ -43,19 +43,19 @@ public class StringManipulating {
         return count;
     }
 
-    public String replaceToUpper(String str, String toReplace) {
+    public static String replaceToUpper(String str, String toReplace) {
         String modified = null;
         modified = str.replace(toReplace, toReplace.toUpperCase());
         return modified;
     }
 
-    public String replaceToLower(String str, String toReplace) {
+    public static String replaceToLower(String str, String toReplace) {
         String modified = null;
         modified = str.replace(toReplace, toReplace.toLowerCase());
         return modified;
     }
 
-    public String replaceOccurence(String str, String toSearch, String toReplace, int occurence) {
+    public static String replaceOccurence(String str, String toSearch, String toReplace, int occurence) {
         int index = str.indexOf(toSearch);
         int count = 0;
         String newString = null;
@@ -71,12 +71,12 @@ public class StringManipulating {
         return newString;
     }
 
-    public String appendHead(String str, String toAppend) {
+    public static String appendHead(String str, String toAppend) {
         String newString = toAppend + str;
         return newString;
     }
 
-    public String appendTail(String str, String toAppend) {
+    public static String appendTail(String str, String toAppend) {
         String newString = str + toAppend;
         return newString;
     }

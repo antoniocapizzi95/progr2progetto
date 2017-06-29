@@ -223,8 +223,8 @@ public class GUI extends javax.swing.JFrame {
         } else {
 
             if (count == 1) {
-                StringManipulating man = new StringManipulating();
-                this.modifiedTxt = man.replace(this.modifiedTxt, this.labelToInput.getText(), this.labelToReplace.getText());
+                
+                this.modifiedTxt = StringManipulating.replace(this.modifiedTxt, this.labelToInput.getText(), this.labelToReplace.getText());
             } else {
                 JFrame f = new JFrame();
                 ReplaceDialog repDial = new ReplaceDialog(f, true, this.modifiedTxt, this.labelToInput.getText(), this.labelToReplace.getText());
@@ -248,9 +248,9 @@ public class GUI extends javax.swing.JFrame {
 
     private void searchAndCountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchAndCountButtonActionPerformed
         // TODO add your handling code here:
-        StringManipulating man = new StringManipulating();
+        
         int count;
-        count = man.searchAndCount(modifiedTxt, this.labelToInput.getText());
+        count = StringManipulating.searchAndCount(modifiedTxt, this.labelToInput.getText());
         this.searchLabel.setText("This string is present: " + Integer.toString(count) + " times");
     }//GEN-LAST:event_searchAndCountButtonActionPerformed
 
@@ -260,14 +260,14 @@ public class GUI extends javax.swing.JFrame {
 
     private void appendTailButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_appendTailButtonActionPerformed
         // TODO add your handling code here:
-        StringManipulating man = new StringManipulating();
-        this.modifiedTxt = man.appendTail(this.modifiedTxt, this.labelToInput.getText());
+        
+        this.modifiedTxt = StringManipulating.appendTail(this.modifiedTxt, this.labelToInput.getText());
     }//GEN-LAST:event_appendTailButtonActionPerformed
 
     private void appendHeadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_appendHeadButtonActionPerformed
         // TODO add your handling code here:
-        StringManipulating man = new StringManipulating();
-        this.modifiedTxt = man.appendHead(this.modifiedTxt, this.labelToInput.getText());
+        
+        this.modifiedTxt = StringManipulating.appendHead(this.modifiedTxt, this.labelToInput.getText());
     }//GEN-LAST:event_appendHeadButtonActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
