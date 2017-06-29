@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -36,14 +37,16 @@ public class ImportTextFile {
         chooser.setDialogTitle("Select a txt file");
         chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
         chooser.setAcceptAllFileFilterUsed(false);
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT FILES", "txt", "text");
+        chooser.setFileFilter(filter);
         String path = null;
         File selectedFile;
 
         if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-            
+
             selectedFile = chooser.getSelectedFile();
             path = selectedFile.getAbsolutePath();
-          
+
         } else {
             System.out.println("No Selection ");
         }
