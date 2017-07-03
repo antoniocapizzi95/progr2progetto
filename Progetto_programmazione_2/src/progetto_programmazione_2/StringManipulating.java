@@ -5,6 +5,9 @@
  */
 package progetto_programmazione_2;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  *
  * @author Antonio
@@ -78,6 +81,41 @@ public class StringManipulating {
 
     public static String appendTail(String str, String toAppend) {
         String newString = str + toAppend;
+        return newString;
+    }
+    
+    public static String replaceRegex(String str, String toReplace,int type) {
+        String newString = str;
+        if(type == 0) {
+            String regex = "[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}";
+            Pattern pattern = Pattern.compile(regex);
+            Matcher matcher = pattern.matcher(str);
+            
+            while (matcher.find()) {
+                newString = StringManipulating.replace(newString, matcher.group(), toReplace);
+            }
+        }
+        
+        if(type == 1) {
+            String regex = "^[a-z]{6}[0-9]{2}[a-z][0-9]{2}[a-z][0-9]{3}[a-z]$";
+            Pattern pattern = Pattern.compile(regex);
+            Matcher matcher = pattern.matcher(str);
+            
+            while (matcher.find()) {
+                newString = StringManipulating.replace(newString, matcher.group(), toReplace);
+            }
+        }
+        
+        if(type == 2) {
+            String regex = "^[0-9]{1,2}\\\\/[0-9]{1,2}\\\\/[0-9]{4}";
+            Pattern pattern = Pattern.compile(regex);
+            Matcher matcher = pattern.matcher(str);
+            
+            while (matcher.find()) {
+                newString = StringManipulating.replace(newString, matcher.group(), toReplace);
+            }
+        }
+        
         return newString;
     }
 
