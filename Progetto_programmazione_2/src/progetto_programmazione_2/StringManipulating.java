@@ -97,7 +97,7 @@ public class StringManipulating {
         }
         
         if(type == 1) {
-            String regex = "^[a-z]{6}[0-9]{2}[a-z][0-9]{2}[a-z][0-9]{3}[a-z]$";
+            String regex = "[a-z]{6}[0-9]{2}[a-z][0-9]{2}[a-z][0-9]{3}[a-z]";
             Pattern pattern = Pattern.compile(regex);
             Matcher matcher = pattern.matcher(str);
             
@@ -107,7 +107,7 @@ public class StringManipulating {
         }
         
         if(type == 2) {
-            String regex = "^[0-9]{1,2}\\\\/[0-9]{1,2}\\\\/[0-9]{4}";
+            String regex = "[0-3]?[0-9].[0-3]?[0-9].(?:[0-9]{2})?[0-9]{2}";
             Pattern pattern = Pattern.compile(regex);
             Matcher matcher = pattern.matcher(str);
             
