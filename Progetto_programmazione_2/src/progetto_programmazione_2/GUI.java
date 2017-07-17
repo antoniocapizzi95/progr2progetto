@@ -59,6 +59,7 @@ public class GUI extends javax.swing.JFrame {
         deleteButtonRegex = new javax.swing.JButton();
         replaceTextRegex = new javax.swing.JTextField();
         toLowerButton = new javax.swing.JButton();
+        searchAndCountRegexButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -149,9 +150,22 @@ public class GUI extends javax.swing.JFrame {
 
         deleteButtonRegex.setText("Delete");
         deleteButtonRegex.setEnabled(false);
+        deleteButtonRegex.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButtonRegexActionPerformed(evt);
+            }
+        });
 
         toLowerButton.setText("To Lower");
         toLowerButton.setEnabled(false);
+
+        searchAndCountRegexButton.setText("Search and count");
+        searchAndCountRegexButton.setEnabled(false);
+        searchAndCountRegexButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchAndCountRegexButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -177,16 +191,18 @@ public class GUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
-                            .addComponent(jLabel4)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(comboBoxRegex, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(122, 122, 122)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(comboBoxRegex, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(85, 85, 85)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(deleteButtonRegex, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(buttonReplaceRegex, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(searchAndCountRegexButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(buttonReplaceRegex, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(deleteButtonRegex, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(34, 34, 34)
                                 .addComponent(replaceTextRegex, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 339, Short.MAX_VALUE))
+                        .addGap(0, 315, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(readText, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -260,7 +276,9 @@ public class GUI extends javax.swing.JFrame {
                     .addComponent(replaceTextRegex, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(deleteButtonRegex)
-                .addGap(56, 56, 56))
+                .addGap(18, 18, 18)
+                .addComponent(searchAndCountRegexButton)
+                .addGap(15, 15, 15))
         );
 
         pack();
@@ -288,12 +306,8 @@ public class GUI extends javax.swing.JFrame {
             if (count == 1) {
                 
                 this.modifiedTxt = StringManipulating.replace(this.modifiedTxt, this.labelToInput.getText(), this.labelToReplace.getText());
-            } else {
-                JFrame f = new JFrame();
-                ReplaceDialog repDial = new ReplaceDialog(f, true, this.modifiedTxt, this.labelToInput.getText(), this.labelToReplace.getText());
-                repDial.setModal(true);
-                repDial.setVisible(true);
-                this.modifiedTxt = StringManipulating.modifiedTxt;
+            } else if(count > 1) {
+                this.modifiedTxt = StringManipulating.replaceOccurenceOpenDialog(this.modifiedTxt, this.labelToInput.getText(), this.labelToReplace.getText(), "Simple Replace");
             }
         }
 
@@ -319,6 +333,8 @@ public class GUI extends javax.swing.JFrame {
 
     private void toUpperButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toUpperButtonActionPerformed
         // TODO add your handling code here:
+        this.modifiedTxt = StringManipulating.replaceToUpper(modifiedTxt, this.labelToInput.getText());
+        
     }//GEN-LAST:event_toUpperButtonActionPerformed
 
     private void appendTailButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_appendTailButtonActionPerformed
@@ -377,6 +393,19 @@ public class GUI extends javax.swing.JFrame {
         this.modifiedTxt = StringManipulating.replaceRegex(this.modifiedTxt, this.replaceTextRegex.getText(), index);
     }//GEN-LAST:event_buttonReplaceRegexActionPerformed
 
+    private void deleteButtonRegexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonRegexActionPerformed
+        // TODO add your handling code here:
+        int index = this.comboBoxRegex.getSelectedIndex();
+        this.modifiedTxt = StringManipulating.replaceRegex(this.modifiedTxt, "", index);
+    }//GEN-LAST:event_deleteButtonRegexActionPerformed
+
+    private void searchAndCountRegexButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchAndCountRegexButtonActionPerformed
+        // TODO add your handling code here:
+        int index = this.comboBoxRegex.getSelectedIndex();
+        int count = StringManipulating.searchAndCountRegex(this.modifiedTxt, index);
+        this.searchLabel.setText("This type of string is present: " + Integer.toString(count) + " times");
+    }//GEN-LAST:event_searchAndCountRegexButtonActionPerformed
+
     private void enableAllButtons() {
         this.appendHeadButton.setEnabled(true);
         this.appendTailButton.setEnabled(true);
@@ -388,6 +417,7 @@ public class GUI extends javax.swing.JFrame {
         this.searchAndCountButton.setEnabled(true);
         this.toUpperButton.setEnabled(true);
         this.toLowerButton.setEnabled(true);
+        this.searchAndCountRegexButton.setEnabled(true);
     }
     
     private void disableAllButtons() {
@@ -401,6 +431,7 @@ public class GUI extends javax.swing.JFrame {
         this.searchAndCountButton.setEnabled(false);
         this.toUpperButton.setEnabled(false);
         this.toLowerButton.setEnabled(false);
+        this.searchAndCountRegexButton.setEnabled(false);
     }
     /**
      * @param args the command line arguments
@@ -457,6 +488,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JTextField replaceTextRegex;
     private javax.swing.JButton saveButton;
     private javax.swing.JButton searchAndCountButton;
+    private javax.swing.JButton searchAndCountRegexButton;
     private javax.swing.JLabel searchLabel;
     private javax.swing.JButton toLowerButton;
     private javax.swing.JButton toUpperButton;

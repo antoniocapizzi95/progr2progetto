@@ -5,6 +5,7 @@
  */
 package progetto_programmazione_2;
 
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 /**
@@ -20,7 +21,7 @@ public class ReplaceDialog extends javax.swing.JDialog {
     private String toSearch = null;
     private String toReplace = null;
     
-    public ReplaceDialog(java.awt.Frame parent, boolean modal, String text, String toSearch, String toReplace) {
+    public ReplaceDialog(java.awt.Frame parent, boolean modal, String title, String text, String toSearch, String toReplace) {
         super(parent, modal);
         this.text = text;
         this.toSearch = toSearch;
@@ -29,7 +30,10 @@ public class ReplaceDialog extends javax.swing.JDialog {
         int count = StringManipulating.searchAndCount(text, toSearch);
         String countStr = Integer.toString(count);
         this.countLabel.setText("This string is present: "+countStr+" times");
+        this.titleLabel.setText(title);
     }
+
+  
 
     
 
@@ -49,6 +53,7 @@ public class ReplaceDialog extends javax.swing.JDialog {
         fieldOccurence = new javax.swing.JTextField();
         replaceOccButton = new javax.swing.JButton();
         errorLabel = new javax.swing.JLabel();
+        titleLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -70,6 +75,8 @@ public class ReplaceDialog extends javax.swing.JDialog {
             }
         });
 
+        titleLabel.setText("Simple Replace");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -79,7 +86,10 @@ public class ReplaceDialog extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(errorLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(countLabel)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(countLabel)
+                            .addGap(120, 120, 120)
+                            .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(replaceAllButton)
                             .addGap(48, 48, 48)
@@ -94,9 +104,12 @@ public class ReplaceDialog extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(countLabel)
-                .addGap(83, 83, 83)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(countLabel))
+                    .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(72, 72, 72)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(replaceAllButton)
                     .addComponent(jLabel2)
@@ -115,20 +128,20 @@ public class ReplaceDialog extends javax.swing.JDialog {
 
     private void replaceAllButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_replaceAllButtonActionPerformed
         // TODO add your handling code here:
-        StringManipulating man = new StringManipulating();
-        this.text = man.replace(this.text, this.toSearch, this.toReplace);
+        
+        this.text = StringManipulating.replace(this.text, this.toSearch, this.toReplace);
         StringManipulating.modifiedTxt = this.text;
         this.setVisible(false);
     }//GEN-LAST:event_replaceAllButtonActionPerformed
 
     private void replaceOccButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_replaceOccButtonActionPerformed
         // TODO add your handling code here:
-        StringManipulating man = new StringManipulating();
+        
         int occurence = Integer.parseInt(this.fieldOccurence.getText());
         int count;
         count = StringManipulating.searchAndCount(this.text, this.toSearch);
         if ((this.fieldOccurence.getText() != null || this.fieldOccurence.getText().length() != 0) && occurence > 0 && occurence <= count) {
-            this.text = man.replaceOccurence(this.text, this.toSearch, this.toReplace, occurence);
+            this.text = StringManipulating.replaceOccurence(this.text, this.toSearch, this.toReplace, occurence);
             StringManipulating.modifiedTxt = this.text;
             this.setVisible(false);
         } else {
@@ -167,7 +180,7 @@ public class ReplaceDialog extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ReplaceDialog dialog = new ReplaceDialog(new javax.swing.JFrame(), true, null, null, null);
+                ReplaceDialog dialog = new ReplaceDialog(new javax.swing.JFrame(), true, null, null, null, null);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -187,5 +200,6 @@ public class ReplaceDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JButton replaceAllButton;
     private javax.swing.JButton replaceOccButton;
+    private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 }
