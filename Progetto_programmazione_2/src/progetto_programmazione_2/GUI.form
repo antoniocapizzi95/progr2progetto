@@ -38,7 +38,7 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="554" max="-2" attributes="0"/>
-                      <Component id="jButton4" min="-2" max="-2" attributes="0"/>
+                      <Component id="previewButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -46,7 +46,24 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="comboBoxRegex" min="-2" pref="74" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="122" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="deleteButtonRegex" max="32767" attributes="0"/>
+                                  <Component id="buttonReplaceRegex" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                              <Component id="replaceTextRegex" min="-2" pref="158" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="0" pref="339" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="readText" min="-2" pref="463" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
@@ -54,15 +71,8 @@
                               <Component id="searchLabel" min="-2" pref="242" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="importButton" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace pref="357" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                   <Component id="labelToInput" max="32767" attributes="0"/>
@@ -77,34 +87,18 @@
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <Component id="appendHeadButton" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                                              <Component id="appendTailButton" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
-                                              <Component id="toUpperButton" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="1" attributes="0">
-                                              <Component id="replaceTextRegex" min="-2" pref="158" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
+                                      <Component id="appendHeadButton" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                                      <Component id="appendTailButton" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+                                      <Component id="toUpperButton" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="toLowerButton" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="comboBoxRegex" min="-2" pref="74" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="122" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="deleteButtonRegex" max="32767" attributes="0"/>
-                                  <Component id="buttonReplaceRegex" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
                       </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -119,13 +113,13 @@
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="importButton" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="saveButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="readText" min="-2" pref="120" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jButton4" min="-2" max="-2" attributes="0"/>
+                  <Component id="previewButton" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
@@ -141,9 +135,9 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="searchAndCountButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="toUpperButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="toLowerButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="appendHeadButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="appendTailButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="toLowerButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
               <Component id="searchLabel" max="32767" attributes="0"/>
@@ -170,7 +164,7 @@
         <Property name="text" type="java.lang.String" value="Title"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="importButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Import"/>
       </Properties>
@@ -186,6 +180,7 @@
     <Component class="javax.swing.JButton" name="replaceButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Replace with"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="replaceButtonActionPerformed"/>
@@ -198,14 +193,16 @@
     <Component class="javax.swing.JButton" name="saveButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Save"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton4">
+    <Component class="javax.swing.JButton" name="previewButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Preview"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="previewButtonActionPerformed"/>
@@ -219,6 +216,7 @@
     <Component class="javax.swing.JButton" name="searchAndCountButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Search and count"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchAndCountButtonActionPerformed"/>
@@ -229,23 +227,16 @@
     <Component class="javax.swing.JButton" name="toUpperButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="To Upper"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="toUpperButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="toLowerButton">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="To Lower"/>
-      </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="true"/>
-        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="0"/>
-      </AuxValues>
-    </Component>
     <Component class="javax.swing.JButton" name="appendHeadButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Append head"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="appendHeadButtonActionPerformed"/>
@@ -254,6 +245,7 @@
     <Component class="javax.swing.JButton" name="appendTailButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Append tail"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="appendTailButtonActionPerformed"/>
@@ -292,6 +284,7 @@
     <Component class="javax.swing.JButton" name="buttonReplaceRegex">
       <Properties>
         <Property name="text" type="java.lang.String" value="Replace with"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonReplaceRegexActionPerformed"/>
@@ -300,9 +293,16 @@
     <Component class="javax.swing.JButton" name="deleteButtonRegex">
       <Properties>
         <Property name="text" type="java.lang.String" value="Delete"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="replaceTextRegex">
+    </Component>
+    <Component class="javax.swing.JButton" name="toLowerButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="To Lower"/>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
