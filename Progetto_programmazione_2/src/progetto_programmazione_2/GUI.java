@@ -60,6 +60,7 @@ public class GUI extends javax.swing.JFrame {
         replaceTextRegex = new javax.swing.JTextField();
         toLowerButton = new javax.swing.JButton();
         searchAndCountRegexButton = new javax.swing.JButton();
+        similarityButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -167,6 +168,13 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
+        similarityButton.setText("SImilarity Check");
+        similarityButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                similarityButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -206,31 +214,33 @@ public class GUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(readText, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(136, 136, 136)
-                                .addComponent(searchLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel3)
                             .addComponent(importButton)
                             .addComponent(jLabel2)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(labelToInput)
-                                    .addComponent(searchAndCountButton, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addComponent(replaceButton)
-                                        .addGap(33, 33, 33)
-                                        .addComponent(labelToReplace, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(35, 35, 35)
-                                        .addComponent(appendHeadButton)
-                                        .addGap(37, 37, 37)
-                                        .addComponent(appendTailButton)
-                                        .addGap(65, 65, 65)
-                                        .addComponent(toUpperButton)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(toLowerButton)))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addGap(136, 136, 136)
+                                    .addComponent(searchLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(labelToInput)
+                                        .addComponent(searchAndCountButton, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(18, 18, 18)
+                                            .addComponent(replaceButton)
+                                            .addGap(33, 33, 33)
+                                            .addComponent(labelToReplace, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(35, 35, 35)
+                                            .addComponent(appendHeadButton)
+                                            .addGap(37, 37, 37)
+                                            .addComponent(appendTailButton)
+                                            .addGap(65, 65, 65)
+                                            .addComponent(toUpperButton)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(toLowerButton))))
+                                .addComponent(similarityButton)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -263,7 +273,9 @@ public class GUI extends javax.swing.JFrame {
                     .addComponent(appendHeadButton)
                     .addComponent(appendTailButton)
                     .addComponent(toLowerButton))
-                .addGap(60, 60, 60)
+                .addGap(35, 35, 35)
+                .addComponent(similarityButton)
+                .addGap(31, 31, 31)
                 .addComponent(searchLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(34, 34, 34)
                 .addComponent(jLabel4)
@@ -406,6 +418,13 @@ public class GUI extends javax.swing.JFrame {
         this.searchLabel.setText("This type of string is present: " + Integer.toString(count) + " times");
     }//GEN-LAST:event_searchAndCountRegexButtonActionPerformed
 
+    private void similarityButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_similarityButtonActionPerformed
+        // TODO add your handling code here:
+        SimilarityCheckGUI scFrame = new SimilarityCheckGUI();
+        scFrame.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_similarityButtonActionPerformed
+
     private void enableAllButtons() {
         this.appendHeadButton.setEnabled(true);
         this.appendTailButton.setEnabled(true);
@@ -490,6 +509,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton searchAndCountButton;
     private javax.swing.JButton searchAndCountRegexButton;
     private javax.swing.JLabel searchLabel;
+    private javax.swing.JButton similarityButton;
     private javax.swing.JButton toLowerButton;
     private javax.swing.JButton toUpperButton;
     // End of variables declaration//GEN-END:variables
