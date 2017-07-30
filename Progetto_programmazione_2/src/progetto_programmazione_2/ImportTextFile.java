@@ -22,6 +22,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class ImportTextFile {
 
     public String textFile = null;
+    public String fileName = null;
 
     public String getTextFile() {
         return this.textFile;
@@ -51,6 +52,15 @@ public class ImportTextFile {
             System.out.println("No Selection ");
         }
         this.importFile(path);
+        this.fileName = chooser.getSelectedFile().getName();
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 
     private void importFile(String path) {

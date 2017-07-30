@@ -6,9 +6,14 @@
 package progetto_programmazione_2;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
-import java.net.Socket;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -32,23 +37,12 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        textToServer = new javax.swing.JTextField();
-        sendMessageButton = new javax.swing.JButton();
         uploadButton = new javax.swing.JButton();
         showUploadedButton = new javax.swing.JButton();
         getSimilarityButton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        similarityLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        textToServer.setText("jTextField1");
-
-        sendMessageButton.setText("Send");
-        sendMessageButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sendMessageButtonActionPerformed(evt);
-            }
-        });
 
         uploadButton.setText("Upload files");
         uploadButton.addActionListener(new java.awt.event.ActionListener() {
@@ -60,8 +54,13 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
         showUploadedButton.setText("Show uploaded files");
 
         getSimilarityButton.setText("Get similarity check");
+        getSimilarityButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                getSimilarityButtonActionPerformed(evt);
+            }
+        });
 
-        jLabel1.setText("The similarity rate is:");
+        similarityLabel.setText("The similarity rate is:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -69,68 +68,86 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(getSimilarityButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel1))
-                    .addComponent(sendMessageButton)
-                    .addComponent(textToServer, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(getSimilarityButton)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(showUploadedButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(uploadButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(141, Short.MAX_VALUE))
+                .addGap(36, 36, 36)
+                .addComponent(similarityLabel)
+                .addContainerGap(119, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(textToServer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(sendMessageButton)
-                .addGap(33, 33, 33)
-                .addComponent(uploadButton)
-                .addGap(18, 18, 18)
-                .addComponent(showUploadedButton)
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(getSimilarityButton)
-                    .addComponent(jLabel1))
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addGap(49, 49, 49)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(similarityLabel)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(uploadButton)
+                        .addGap(35, 35, 35)
+                        .addComponent(showUploadedButton)
+                        .addGap(41, 41, 41)
+                        .addComponent(getSimilarityButton)))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void sendMessageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendMessageButtonActionPerformed
-        // TODO add your handling code here:
-        BufferedReader in = null;
-        PrintStream out = null;
-        Socket socket = null;
-        String message;
-        try {
-            socket = new Socket("localhost", 4000);
-            in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            out = new PrintStream(socket.getOutputStream(), true);
-            out.println(this.textToServer.getText());
-            out.flush();
-            out.close();
-            in.close();
-        }
-        catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-    }//GEN-LAST:event_sendMessageButtonActionPerformed
-
     private void uploadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadButtonActionPerformed
         // TODO add your handling code here:
+        String title;
         String text;
         ImportTextFile importFile = new ImportTextFile();
         importFile.selectFile();
+        title = importFile.getFileName();
         text = importFile.getTextFile();
         SimilarityServerIO io = new SimilarityServerIO();
-        io.sendToServer(text);
+        io.sendToServer(title, text);
+        
     }//GEN-LAST:event_uploadButtonActionPerformed
+
+    private void getSimilarityButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getSimilarityButtonActionPerformed
+        // TODO add your handling code here:
+        URL url = null;
+        try {
+            url = new URL("http://localhost:8000/getSR/");
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(SimilarityCheckGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        URLConnection conn = null;
+        try {
+            conn = url.openConnection();
+        } catch (IOException ex) {
+            Logger.getLogger(SimilarityCheckGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        BufferedReader in = null;
+        try {
+            in = new BufferedReader(
+                    new InputStreamReader(
+                            conn.getInputStream()));
+        } catch (IOException ex) {
+            Logger.getLogger(SimilarityCheckGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String inputLine;
+        String result = null;
+        try {
+            while ((inputLine = in.readLine()) != null) {
+                System.out.println(inputLine);
+                if(inputLine != null) result = inputLine;
+            }
+                
+                similarityLabel.setText("The similarity rate is: "+result+"%");
+        } catch (IOException ex) {
+            Logger.getLogger(SimilarityCheckGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            in.close();
+        } catch (IOException ex) {
+            Logger.getLogger(SimilarityCheckGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_getSimilarityButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -169,10 +186,8 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton getSimilarityButton;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JButton sendMessageButton;
     private javax.swing.JButton showUploadedButton;
-    private javax.swing.JTextField textToServer;
+    private javax.swing.JLabel similarityLabel;
     private javax.swing.JButton uploadButton;
     // End of variables declaration//GEN-END:variables
 }
