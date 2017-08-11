@@ -14,6 +14,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 
 /**
  *
@@ -41,6 +42,13 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
         showUploadedButton = new javax.swing.JButton();
         getSimilarityButton = new javax.swing.JButton();
         similarityLabel = new javax.swing.JLabel();
+        uploadedLabel = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        numberOne = new javax.swing.JTextField();
+        numberTwo = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        indexToRemove = new javax.swing.JTextField();
+        removeButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -52,6 +60,11 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
         });
 
         showUploadedButton.setText("Show uploaded files");
+        showUploadedButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showUploadedButtonActionPerformed(evt);
+            }
+        });
 
         getSimilarityButton.setText("Get similarity check");
         getSimilarityButton.addActionListener(new java.awt.event.ActionListener() {
@@ -62,34 +75,75 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
 
         similarityLabel.setText("The similarity rate is:");
 
+        uploadedLabel.setText("Uploaded Files:");
+
+        jLabel1.setText("Select the ID of files to compare");
+
+        jLabel2.setText("Remove an uploaded file");
+
+        removeButton.setText("Remove");
+        removeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(getSimilarityButton)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(showUploadedButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(uploadButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(36, 36, 36)
-                .addComponent(similarityLabel)
-                .addContainerGap(119, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(getSimilarityButton)
+                            .addComponent(showUploadedButton)
+                            .addComponent(uploadButton, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(numberOne, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(numberTwo, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(36, 36, 36)
+                                .addComponent(uploadedLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addComponent(similarityLabel))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(indexToRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(removeButton)))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(similarityLabel)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(uploadButton)
-                        .addGap(35, 35, 35)
-                        .addComponent(showUploadedButton)
-                        .addGap(41, 41, 41)
-                        .addComponent(getSimilarityButton)))
-                .addContainerGap(106, Short.MAX_VALUE))
+                .addGap(51, 51, 51)
+                .addComponent(uploadButton)
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(showUploadedButton)
+                    .addComponent(uploadedLabel))
+                .addGap(35, 35, 35)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(numberOne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(numberTwo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(similarityLabel))
+                .addGap(18, 18, 18)
+                .addComponent(getSimilarityButton)
+                .addGap(51, 51, 51)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(indexToRemove, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(removeButton))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
 
         pack();
@@ -110,44 +164,46 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
 
     private void getSimilarityButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getSimilarityButtonActionPerformed
         // TODO add your handling code here:
-        URL url = null;
-        try {
-            url = new URL("http://localhost:8000/getSR/");
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(SimilarityCheckGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        URLConnection conn = null;
-        try {
-            conn = url.openConnection();
-        } catch (IOException ex) {
-            Logger.getLogger(SimilarityCheckGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        BufferedReader in = null;
-        try {
-            in = new BufferedReader(
-                    new InputStreamReader(
-                            conn.getInputStream()));
-        } catch (IOException ex) {
-            Logger.getLogger(SimilarityCheckGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        String inputLine;
         String result = null;
         try {
-            while ((inputLine = in.readLine()) != null) {
-                System.out.println(inputLine);
-                if(inputLine != null) result = inputLine;
-            }
+            result = SimilarityServerIO.getSR(this.numberOne.getText(),this.numberTwo.getText());
+        } catch (IOException ex) {
+            Logger.getLogger(SimilarityCheckGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
                 
-                similarityLabel.setText("The similarity rate is: "+result+"%");
-        } catch (IOException ex) {
-            Logger.getLogger(SimilarityCheckGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            in.close();
-        } catch (IOException ex) {
-            Logger.getLogger(SimilarityCheckGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        similarityLabel.setText("The similarity rate is: "+result+"%");
+        
     }//GEN-LAST:event_getSimilarityButtonActionPerformed
+
+    private void showUploadedButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showUploadedButtonActionPerformed
+        // TODO add your handling code here:
+        String uploadedFiles = null;
+        try {
+            uploadedFiles = SimilarityServerIO.getUploaded();
+        } catch (IOException ex) {
+            Logger.getLogger(SimilarityCheckGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.uploadedLabel.setText(uploadedFiles);
+    }//GEN-LAST:event_showUploadedButtonActionPerformed
+
+    private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
+        // TODO add your handling code here:
+        String index = this.indexToRemove.getText();
+        try {
+            if(Integer.parseInt(index)>0 && Integer.parseInt(index)<= SimilarityServerIO.getNumberOfUploaded()) SimilarityServerIO.removeFile(this.indexToRemove.getText());
+            else {
+                JFrame fr = new JFrame();
+                try {
+                    ErrorDialog er = new ErrorDialog(fr,true,"Insert a number between 1 and "+Integer.toString(SimilarityServerIO.getNumberOfUploaded()));
+                    er.setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(SimilarityCheckGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(SimilarityCheckGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_removeButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -186,8 +242,15 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton getSimilarityButton;
+    private javax.swing.JTextField indexToRemove;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JTextField numberOne;
+    private javax.swing.JTextField numberTwo;
+    private javax.swing.JButton removeButton;
     private javax.swing.JButton showUploadedButton;
     private javax.swing.JLabel similarityLabel;
     private javax.swing.JButton uploadButton;
+    private javax.swing.JLabel uploadedLabel;
     // End of variables declaration//GEN-END:variables
 }
