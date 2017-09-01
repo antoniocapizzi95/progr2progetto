@@ -328,7 +328,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="similarityButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="SImilarity Check"/>
+        <Property name="text" type="java.lang.String" value="Similarity Check"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="similarityButtonActionPerformed"/>

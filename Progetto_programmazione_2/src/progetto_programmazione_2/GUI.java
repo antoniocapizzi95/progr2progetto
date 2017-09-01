@@ -168,7 +168,7 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
-        similarityButton.setText("SImilarity Check");
+        similarityButton.setText("Similarity Check");
         similarityButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 similarityButtonActionPerformed(evt);
