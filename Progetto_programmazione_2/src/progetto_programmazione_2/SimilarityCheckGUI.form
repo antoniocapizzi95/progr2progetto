@@ -39,16 +39,8 @@
                               <Component id="numberTwo" min="-2" pref="44" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                              <Component id="uploadedLabel" min="-2" pref="193" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                              <Component id="similarityLabel" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
+                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                      <Component id="similarityLabel" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="indexToRemove" min="-2" pref="42" max="-2" attributes="0"/>
@@ -56,7 +48,7 @@
                       <Component id="removeButton" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="83" max="32767" attributes="0"/>
+              <EmptySpace pref="187" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -66,10 +58,7 @@
               <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
               <Component id="uploadButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="showUploadedButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="uploadedLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
+              <Component id="showUploadedButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -120,11 +109,6 @@
     <Component class="javax.swing.JLabel" name="similarityLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="The similarity rate is:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="uploadedLabel">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Uploaded Files:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
