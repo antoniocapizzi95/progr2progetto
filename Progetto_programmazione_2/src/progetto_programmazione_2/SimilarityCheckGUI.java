@@ -152,7 +152,7 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
             SimilarityServerIO.sendToServer(title, text);
         } catch (IOException ex) {
             String mess = ex.getMessage();
-            if (mess.equals("Connection refused: connect")) {
+            if (mess.equals("Connection refused: connect") || mess.equals("Connection refused (Connection refused)")) {
                 JFrame f = new JFrame();
                 ErrorDialog ed = new ErrorDialog(f, true, "Error! The server is offline");
                 ed.setVisible(true);
@@ -181,7 +181,7 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
                         er.setVisible(true);
                     } catch (IOException ex) {
                         String mess = ex.getMessage();
-                        if (mess.equals("Connection refused: connect")) {
+                        if (mess.equals("Connection refused: connect") || mess.equals("Connection refused (Connection refused)")) {
                             JFrame f = new JFrame();
                             ErrorDialog ed = new ErrorDialog(f, true, "Error! The server is offline");
                             ed.setVisible(true);
@@ -191,7 +191,7 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
                 }
             } catch (IOException ex) {
                 String mess = ex.getMessage();
-                if (mess.equals("Connection refused: connect")) {
+                if (mess.equals("Connection refused: connect") || mess.equals("Connection refused (Connection refused)")) {
                     JFrame fr = new JFrame();
                     ErrorDialog ed = new ErrorDialog(fr, true, "Error! The server is offline");
                     ed.setVisible(true);
@@ -219,7 +219,7 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
             ed.setVisible(true);
         } catch (IOException ex) {
             String mess = ex.getMessage();
-            if (mess.equals("Connection refused: connect")) {
+            if (mess.equals("Connection refused: connect") || mess.equals("Connection refused (Connection refused)")) {
                 JFrame fr = new JFrame();
                 ErrorDialog ed = new ErrorDialog(fr, true, "Error! The server is offline");
                 ed.setVisible(true);
@@ -244,7 +244,7 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
                         er.setVisible(true);
                     } catch (IOException ex) {
                         String mess = ex.getMessage();
-                        if (mess.equals("Connection refused: connect")) {
+                        if (mess.equals("Connection refused: connect") || mess.equals("Connection refused (Connection refused)")) {
                             JFrame f = new JFrame();
                             ErrorDialog ed = new ErrorDialog(f, true, "Error! The server is offline");
                             ed.setVisible(true);
@@ -254,7 +254,7 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
                 }
             } catch (IOException ex) {
                 String mess = ex.getMessage();
-                if (mess.equals("Connection refused: connect")) {
+                if (mess.equals("Connection refused: connect") || mess.equals("Connection refused (Connection refused)")) {
                     JFrame fr = new JFrame();
                     ErrorDialog ed = new ErrorDialog(fr, true, "Error! The server is offline");
                     ed.setVisible(true);
