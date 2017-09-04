@@ -23,10 +23,10 @@ import java.net.URLConnection;
  */
 public class SimilarityServerIO {
 
-    public void sendToServer(String title, String content) {
+    public static void sendToServer(String title, String content) throws MalformedURLException,IOException{
         title = StringManipulating.replace(title, ".txt", "");
-        this.executePost("http://localhost:8000/upload/", "t," + title);
-        this.executePost("http://localhost:8000/upload/", "c," + content);
+        SimilarityServerIO.executePost("http://localhost:8000/upload/", "t," + title);
+        SimilarityServerIO.executePost("http://localhost:8000/upload/", "c," + content);
     }
 
     public static String getSR(String index1, String index2) throws MalformedURLException, IOException {
@@ -83,11 +83,11 @@ public class SimilarityServerIO {
         return Integer.parseInt(result);
     }
     
-    public static void removeFile(String index) {
+    public static void removeFile(String index) throws IOException {
         SimilarityServerIO.executePost("http://localhost:8000/removeFile/", index);
     }
 
-    private static String executePost(String targetURL, String urlParameters) {
+    private static String executePost(String targetURL, String urlParameters) throws MalformedURLException, IOException{
         HttpURLConnection connection = null;
 
         try {

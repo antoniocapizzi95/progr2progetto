@@ -147,8 +147,18 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
         importFile.selectFile();
         title = importFile.getFileName();
         text = importFile.getTextFile();
-        SimilarityServerIO io = new SimilarityServerIO();
-        io.sendToServer(title, text);
+        try {
+            SimilarityServerIO.getNumberOfUploaded();
+            SimilarityServerIO.sendToServer(title, text);
+        } catch (IOException ex) {
+            String mess = ex.getMessage();
+            if (mess.equals("Connection refused: connect")) {
+                JFrame f = new JFrame();
+                ErrorDialog ed = new ErrorDialog(f, true, "Error! The server is offline");
+                ed.setVisible(true);
+            }
+            Logger.getLogger(SimilarityCheckGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }//GEN-LAST:event_uploadButtonActionPerformed
 
@@ -156,12 +166,12 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         String result = null;
 
-        try {
-            int numberOne;
-            int numberTwo;
-            if (!this.numberOne.getText().equals("") && !this.numberTwo.getText().equals("")) {
-                numberOne = Integer.parseInt(this.numberOne.getText());
-                numberTwo = Integer.parseInt(this.numberTwo.getText());
+        int numberOne;
+        int numberTwo;
+        if (!this.numberOne.getText().equals("") && !this.numberTwo.getText().equals("")) {
+            numberOne = Integer.parseInt(this.numberOne.getText());
+            numberTwo = Integer.parseInt(this.numberTwo.getText());
+            try {
                 if ((numberOne > 0 && numberTwo > 0) && (numberOne <= SimilarityServerIO.getNumberOfUploaded() && numberTwo <= SimilarityServerIO.getNumberOfUploaded())) {
                     result = SimilarityServerIO.getSR(this.numberOne.getText(), this.numberTwo.getText());
                 } else {
@@ -170,21 +180,32 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
                         ErrorDialog er = new ErrorDialog(fr, true, "Insert two numbers between 1 and " + Integer.toString(SimilarityServerIO.getNumberOfUploaded()));
                         er.setVisible(true);
                     } catch (IOException ex) {
+                        String mess = ex.getMessage();
+                        if (mess.equals("Connection refused: connect")) {
+                            JFrame f = new JFrame();
+                            ErrorDialog ed = new ErrorDialog(f, true, "Error! The server is offline");
+                            ed.setVisible(true);
+                        }
                         Logger.getLogger(SimilarityCheckGUI.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
-            } else {
-                JFrame fr = new JFrame();
-                ErrorDialog er = new ErrorDialog(fr, true, "Please, do not leave empty fields");
-                er.setVisible(true);
-                result = "";
+            } catch (IOException ex) {
+                String mess = ex.getMessage();
+                if (mess.equals("Connection refused: connect")) {
+                    JFrame fr = new JFrame();
+                    ErrorDialog ed = new ErrorDialog(fr, true, "Error! The server is offline");
+                    ed.setVisible(true);
+                }
+                Logger.getLogger(SimilarityCheckGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
+        } else {
+            JFrame fr = new JFrame();
+            ErrorDialog er = new ErrorDialog(fr, true, "Please, do not leave empty fields");
+            er.setVisible(true);
+            result = "";
 
-        } catch (IOException ex) {
-            Logger.getLogger(SimilarityCheckGUI.class.getName()).log(Level.SEVERE, null, ex);
+            similarityLabel.setText("The similarity rate is: " + result + "%");
         }
-
-        similarityLabel.setText("The similarity rate is: " + result + "%");
 
     }//GEN-LAST:event_getSimilarityButtonActionPerformed
 
@@ -193,12 +214,19 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
         String uploadedFiles = null;
         try {
             uploadedFiles = SimilarityServerIO.getUploaded();
+            JFrame f = new JFrame();
+            MessageDialog ed = new MessageDialog(f, true, uploadedFiles);
+            ed.setVisible(true);
         } catch (IOException ex) {
+            String mess = ex.getMessage();
+            if (mess.equals("Connection refused: connect")) {
+                JFrame fr = new JFrame();
+                ErrorDialog ed = new ErrorDialog(fr, true, "Error! The server is offline");
+                ed.setVisible(true);
+            }
             Logger.getLogger(SimilarityCheckGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-        JFrame f = new JFrame();
-        MessageDialog ed = new MessageDialog(f, true, uploadedFiles);
-        ed.setVisible(true);
+
         //this.uploadedLabel.setText(uploadedFiles);
     }//GEN-LAST:event_showUploadedButtonActionPerformed
 
@@ -215,10 +243,22 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
                         ErrorDialog er = new ErrorDialog(fr, true, "Insert a number between 1 and " + Integer.toString(SimilarityServerIO.getNumberOfUploaded()));
                         er.setVisible(true);
                     } catch (IOException ex) {
+                        String mess = ex.getMessage();
+                        if (mess.equals("Connection refused: connect")) {
+                            JFrame f = new JFrame();
+                            ErrorDialog ed = new ErrorDialog(f, true, "Error! The server is offline");
+                            ed.setVisible(true);
+                        }
                         Logger.getLogger(SimilarityCheckGUI.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
             } catch (IOException ex) {
+                String mess = ex.getMessage();
+                if (mess.equals("Connection refused: connect")) {
+                    JFrame fr = new JFrame();
+                    ErrorDialog ed = new ErrorDialog(fr, true, "Error! The server is offline");
+                    ed.setVisible(true);
+                }
                 Logger.getLogger(SimilarityCheckGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
