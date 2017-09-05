@@ -159,6 +159,11 @@ public class GUI extends javax.swing.JFrame {
 
         toLowerButton.setText("To Lower");
         toLowerButton.setEnabled(false);
+        toLowerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                toLowerButtonActionPerformed(evt);
+            }
+        });
 
         searchAndCountRegexButton.setText("Search and count");
         searchAndCountRegexButton.setEnabled(false);
@@ -345,8 +350,14 @@ public class GUI extends javax.swing.JFrame {
 
     private void toUpperButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toUpperButtonActionPerformed
         // TODO add your handling code here:
-        this.modifiedTxt = StringManipulating.replaceToUpper(modifiedTxt, this.labelToInput.getText());
-        
+        int num = 0;
+        num = StringManipulating.searchAndCount(modifiedTxt, this.labelToInput.getText());
+        if(num>0) this.modifiedTxt = StringManipulating.replaceToUpper(modifiedTxt, this.labelToInput.getText());
+        else {
+            JFrame f = new JFrame();
+            ErrorDialog ed = new ErrorDialog(f,true,"This string is not present");
+            ed.setVisible(true);
+        }
     }//GEN-LAST:event_toUpperButtonActionPerformed
 
     private void appendTailButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_appendTailButtonActionPerformed
@@ -424,6 +435,18 @@ public class GUI extends javax.swing.JFrame {
         scFrame.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_similarityButtonActionPerformed
+
+    private void toLowerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toLowerButtonActionPerformed
+        // TODO add your handling code here:
+        int num = 0;
+        num = StringManipulating.searchAndCount(modifiedTxt, this.labelToInput.getText());
+        if(num>0) this.modifiedTxt = StringManipulating.replaceToLower(modifiedTxt, this.labelToInput.getText());
+        else {
+            JFrame f = new JFrame();
+            ErrorDialog ed = new ErrorDialog(f,true,"This string is not present");
+            ed.setVisible(true);
+        }
+    }//GEN-LAST:event_toLowerButtonActionPerformed
 
     private void enableAllButtons() {
         this.appendHeadButton.setEnabled(true);
