@@ -203,9 +203,8 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
             ErrorDialog er = new ErrorDialog(fr, true, "Please, do not leave empty fields");
             er.setVisible(true);
             result = "";
-
-            similarityLabel.setText("The similarity rate is: " + result + "%");
         }
+        similarityLabel.setText("The similarity rate is: " + result + "%");
 
     }//GEN-LAST:event_getSimilarityButtonActionPerformed
 
