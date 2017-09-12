@@ -11,13 +11,13 @@ package progetto_programmazione_2;
  */
 public class MessageDialog extends javax.swing.JDialog {
 
-    /**
-     * Creates new form ErrorDialog
-     */
-    public MessageDialog(java.awt.Frame parent, boolean modal, String text) {
+    
+    
+    public MessageDialog(java.awt.Frame parent, boolean modal, String text, boolean okButton) {
         super(parent, modal);
         initComponents();
         this.messageTextArea.setText(text);
+        this.okButton.setVisible(okButton);
     }
 
     /**
@@ -108,7 +108,7 @@ public class MessageDialog extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                MessageDialog dialog = new MessageDialog(new javax.swing.JFrame(), true, null);
+                MessageDialog dialog = new MessageDialog(new javax.swing.JFrame(), true, null, true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

@@ -48,10 +48,12 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         indexToRemove = new javax.swing.JTextField();
         removeButton = new javax.swing.JButton();
+        connectButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         uploadButton.setText("Upload files");
+        uploadButton.setEnabled(false);
         uploadButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 uploadButtonActionPerformed(evt);
@@ -59,6 +61,7 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
         });
 
         showUploadedButton.setText("Show uploaded files");
+        showUploadedButton.setEnabled(false);
         showUploadedButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 showUploadedButtonActionPerformed(evt);
@@ -66,6 +69,7 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
         });
 
         getSimilarityButton.setText("Get similarity check");
+        getSimilarityButton.setEnabled(false);
         getSimilarityButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 getSimilarityButtonActionPerformed(evt);
@@ -79,9 +83,17 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
         jLabel2.setText("Remove an uploaded file");
 
         removeButton.setText("Remove");
+        removeButton.setEnabled(false);
         removeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 removeButtonActionPerformed(evt);
+            }
+        });
+
+        connectButton.setText("Connect");
+        connectButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                connectButtonActionPerformed(evt);
             }
         });
 
@@ -108,17 +120,20 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(indexToRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(removeButton)))
+                        .addComponent(removeButton))
+                    .addComponent(connectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(187, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(51, 51, 51)
+                .addGap(25, 25, 25)
+                .addComponent(connectButton)
+                .addGap(18, 18, 18)
                 .addComponent(uploadButton)
-                .addGap(33, 33, 33)
+                .addGap(26, 26, 26)
                 .addComponent(showUploadedButton)
-                .addGap(35, 35, 35)
+                .addGap(27, 27, 27)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -149,7 +164,13 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
         text = importFile.getTextFile();
         try {
             SimilarityServerIO.getNumberOfUploaded();
+            JFrame fr = new JFrame();
+            MessageDialog md = new MessageDialog(fr,false,"Uploading, please wait",false);
+            md.setVisible(true);
             SimilarityServerIO.sendToServer(title, text);
+            md.setVisible(false);
+            md = new MessageDialog(fr,true,"Upload completed",true);
+            md.setVisible(true);
         } catch (IOException ex) {
             String mess = ex.getMessage();
             if (mess.equals("Connection refused: connect") || mess.equals("Connection refused (Connection refused)")) {
@@ -214,7 +235,7 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
         try {
             uploadedFiles = SimilarityServerIO.getUploaded();
             JFrame f = new JFrame();
-            MessageDialog ed = new MessageDialog(f, true, uploadedFiles);
+            MessageDialog ed = new MessageDialog(f, true, uploadedFiles, true);
             ed.setVisible(true);
         } catch (IOException ex) {
             String mess = ex.getMessage();
@@ -268,6 +289,36 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_removeButtonActionPerformed
 
+    private void enableButtons() {
+        this.uploadButton.setEnabled(true);
+        this.removeButton.setEnabled(true);
+        this.showUploadedButton.setEnabled(true);
+        this.getSimilarityButton.setEnabled(true);
+    }
+
+    private void connectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connectButtonActionPerformed
+        // TODO add your handling code here:
+        SimilarityServerIO.setAddress("localhost");
+        SimilarityServerIO.setPort("8000");
+        try {
+            SimilarityServerIO.getNumberOfUploaded();
+            this.enableButtons();
+            JFrame f = new JFrame();
+            MessageDialog md = new MessageDialog(f,false,"Connection with server completed",true);
+            md.setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(SimilarityCheckGUI.class.getName()).log(Level.SEVERE, null, ex);
+            String mess = ex.getMessage();
+            if (mess.equals("Connection refused: connect") || mess.equals("Connection refused (Connection refused)")) {
+                JFrame fr = new JFrame();
+                ErrorDialog ed = new ErrorDialog(fr, true, "Error! The server is offline");
+                ed.setVisible(true);
+            }
+        }
+
+
+    }//GEN-LAST:event_connectButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -304,6 +355,7 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton connectButton;
     private javax.swing.JButton getSimilarityButton;
     private javax.swing.JTextField indexToRemove;
     private javax.swing.JLabel jLabel1;

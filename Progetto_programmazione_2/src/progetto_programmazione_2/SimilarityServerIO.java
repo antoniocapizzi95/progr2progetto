@@ -23,18 +23,37 @@ import java.net.URLConnection;
  */
 public class SimilarityServerIO {
 
+    public static String getAddress() {
+        return address;
+    }
+
+    public static void setAddress(String address) {
+        SimilarityServerIO.address = address;
+    }
+
+    public static String getPort() {
+        return port;
+    }
+
+    public static void setPort(String port) {
+        SimilarityServerIO.port = port;
+    }
+    
+    private static String address;
+    private static String port;
+
     public static void sendToServer(String title, String content) throws MalformedURLException,IOException{
         title = StringManipulating.replace(title, ".txt", "");
-        SimilarityServerIO.executePost("http://localhost:8000/upload/", "t," + title);
-        SimilarityServerIO.executePost("http://localhost:8000/upload/", "c," + content);
+        SimilarityServerIO.executePost("http://"+address+":"+port+"/upload/", "t," + title);
+        SimilarityServerIO.executePost("http://"+address+":"+port+"/upload/", "c," + content);
     }
 
     public static String getSR(String index1, String index2) throws MalformedURLException, IOException {
         
-        SimilarityServerIO.executePost("http://localhost:8000/setIndex/", index1);
-        SimilarityServerIO.executePost("http://localhost:8000/setIndex/", index2);
+        SimilarityServerIO.executePost("http://"+address+":"+port+"/setIndex/", index1);
+        SimilarityServerIO.executePost("http://"+address+":"+port+"/setIndex/", index2);
         String result = null;
-        URL url = new URL("http://localhost:8000/getSR/");
+        URL url = new URL("http://"+address+":"+port+"/getSR/");
         URLConnection conn = url.openConnection();
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(
@@ -51,7 +70,7 @@ public class SimilarityServerIO {
     
     public static String getUploaded() throws MalformedURLException, IOException {
         String result = null;
-        URL url = new URL("http://localhost:8000/getFUSituation/");
+        URL url = new URL("http://"+address+":"+port+"/getFUSituation/");
         URLConnection conn = url.openConnection();
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(
@@ -68,7 +87,7 @@ public class SimilarityServerIO {
     
     public static int getNumberOfUploaded() throws MalformedURLException, IOException {
         String result = null;
-        URL url = new URL("http://localhost:8000/getNumber/");
+        URL url = new URL("http://"+address+":"+port+"/getNumber/");
         URLConnection conn = url.openConnection();
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(
@@ -84,7 +103,7 @@ public class SimilarityServerIO {
     }
     
     public static void removeFile(String index) throws IOException {
-        SimilarityServerIO.executePost("http://localhost:8000/removeFile/", index);
+        SimilarityServerIO.executePost("http://"+address+":"+port+"/removeFile/", index);
     }
 
     private static String executePost(String targetURL, String urlParameters) throws MalformedURLException, IOException{
