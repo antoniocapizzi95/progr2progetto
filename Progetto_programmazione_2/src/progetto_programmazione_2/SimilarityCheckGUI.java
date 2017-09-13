@@ -15,6 +15,7 @@ import java.net.URLConnection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import org.json.*;
 
 /**
  *
@@ -298,8 +299,22 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
 
     private void connectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connectButtonActionPerformed
         // TODO add your handling code here:
-        SimilarityServerIO.setAddress("localhost");
-        SimilarityServerIO.setPort("8000");
+        ImportTextFile im = new ImportTextFile();
+        try {
+            im.importFile("param.json");
+        }
+        catch(Exception e) {
+            System.out.println("file non trovato");
+            JFrame f = new JFrame();
+            CreateJSONDialog cjd = new CreateJSONDialog(f,true);
+            cjd.setVisible(true);
+        }
+        String param = im.getTextFile();
+        JSONObject obj = new JSONObject(param);
+        String address = obj.getString("address");
+        String port = obj.getString("port");
+        SimilarityServerIO.setAddress(address);
+        SimilarityServerIO.setPort(port);
         try {
             SimilarityServerIO.getNumberOfUploaded();
             this.enableButtons();

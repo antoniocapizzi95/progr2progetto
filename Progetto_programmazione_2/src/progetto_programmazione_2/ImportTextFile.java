@@ -63,7 +63,7 @@ public class ImportTextFile {
         this.fileName = fileName;
     }
 
-    private void importFile(String path) {
+    public void importFile(String path) {
 
         FileReader f = null;
         try {
