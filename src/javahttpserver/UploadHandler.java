@@ -12,6 +12,7 @@ import com.sun.net.httpserver.HttpServer;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.util.List;
 import java.util.Map;
@@ -65,6 +66,14 @@ public class UploadHandler implements HttpHandler {
                     System.out.print("Content: "+dataString.substring(2)+"\n");
                     ImportTxt.list.remove(index);
                     ImportTxt.list.add(index,listElem);
+                    try {
+                        PrintWriter writer = new PrintWriter(listElem.title+".txt", "UTF-8");
+                        writer.println(listElem.content);
+                        writer.close();
+                    } catch (IOException e) {
+                        // do something
+                        
+                    }
                     
                 }
                 he.close();
