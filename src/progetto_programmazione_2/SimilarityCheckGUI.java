@@ -276,7 +276,10 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
             er.setVisible(true);
             result = "";
         }
-        similarityLabel.setText("The similarity rate is: " + result + "%");
+        //similarityLabel.setText("The similarity rate is: " + result + "%");
+        JFrame frame = new JFrame();
+        MessageDialog md = new MessageDialog(frame,true,"The similarity rate is: " + result + "%",true);
+        md.setVisible(true);
 
     }//GEN-LAST:event_getSimilarityButtonActionPerformed
 
@@ -450,4 +453,6 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
     private javax.swing.JLabel similarityLabel;
     private javax.swing.JButton uploadButton;
     // End of variables declaration//GEN-END:variables
+
+   
 }

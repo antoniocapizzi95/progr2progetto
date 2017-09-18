@@ -82,6 +82,9 @@ public class SimilarityServerIO {
             if(inputLine != null) result = inputLine;
         }
         in.close();
+        result = result.replace("-", "\n");
+        result = result.replace(")", " - ");
+        result = "ID - Title \n" + result;
         return result;
     }
     
