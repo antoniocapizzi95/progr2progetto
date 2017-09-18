@@ -28,6 +28,7 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
      */
     public SimilarityCheckGUI() {
         initComponents();
+        this.jaroRadio.setSelected(true);
     }
 
     /**
@@ -39,6 +40,9 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
+        buttonGroup3 = new javax.swing.ButtonGroup();
         uploadButton = new javax.swing.JButton();
         showUploadedButton = new javax.swing.JButton();
         getSimilarityButton = new javax.swing.JButton();
@@ -50,6 +54,9 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
         indexToRemove = new javax.swing.JTextField();
         removeButton = new javax.swing.JButton();
         connectButton = new javax.swing.JButton();
+        jaroRadio = new javax.swing.JRadioButton();
+        levRadio = new javax.swing.JRadioButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -98,44 +105,79 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
             }
         });
 
+        jaroRadio.setText("Jaro Winkler Distance");
+        jaroRadio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jaroRadioActionPerformed(evt);
+            }
+        });
+
+        levRadio.setText("Levenshtein Distance");
+        levRadio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                levRadioActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Choose the algorithm to calculate similarity");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(getSimilarityButton)
                             .addComponent(showUploadedButton)
-                            .addComponent(uploadButton, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(numberOne, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(indexToRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(numberTwo, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(26, 26, 26)
-                        .addComponent(similarityLabel))
+                                .addComponent(removeButton))
+                            .addComponent(connectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(getSimilarityButton)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(numberOne, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(numberTwo, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(26, 26, 26)
+                                .addComponent(similarityLabel)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jaroRadio, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(levRadio, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(133, 133, 133))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(indexToRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(removeButton))
-                    .addComponent(connectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(187, Short.MAX_VALUE))
+                        .addComponent(uploadButton, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel3)
+                        .addGap(92, 92, 92))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(connectButton)
-                .addGap(18, 18, 18)
-                .addComponent(uploadButton)
-                .addGap(26, 26, 26)
-                .addComponent(showUploadedButton)
-                .addGap(27, 27, 27)
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(connectButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(uploadButton)
+                        .addGap(26, 26, 26)
+                        .addComponent(showUploadedButton)
+                        .addGap(13, 13, 13)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jaroRadio)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(levRadio)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(numberOne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -149,7 +191,7 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(indexToRemove, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(removeButton))
-                .addContainerGap(100, Short.MAX_VALUE))
+                .addContainerGap(114, Short.MAX_VALUE))
         );
 
         pack();
@@ -187,7 +229,15 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
     private void getSimilarityButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getSimilarityButtonActionPerformed
         // TODO add your handling code here:
         String result = null;
+        
+        String alg = null;
 
+        if(this.jaroRadio.isSelected()) {
+            alg = "jaro";
+        }
+        if(this.levRadio.isSelected()) {
+            alg = "lev";
+        }
         int numberOne;
         int numberTwo;
         if (!this.numberOne.getText().equals("") && !this.numberTwo.getText().equals("")) {
@@ -195,7 +245,7 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
             numberTwo = Integer.parseInt(this.numberTwo.getText());
             try {
                 if ((numberOne > 0 && numberTwo > 0) && (numberOne <= SimilarityServerIO.getNumberOfUploaded() && numberTwo <= SimilarityServerIO.getNumberOfUploaded())) {
-                    result = SimilarityServerIO.getSR(this.numberOne.getText(), this.numberTwo.getText());
+                    result = SimilarityServerIO.getSR(this.numberOne.getText(), this.numberTwo.getText(),alg);
                 } else {
                     JFrame fr = new JFrame();
                     try {
@@ -334,6 +384,18 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_connectButtonActionPerformed
 
+    private void jaroRadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jaroRadioActionPerformed
+        // TODO add your handling code here:
+        this.jaroRadio.setSelected(true);
+        this.levRadio.setSelected(false);
+    }//GEN-LAST:event_jaroRadioActionPerformed
+
+    private void levRadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_levRadioActionPerformed
+        // TODO add your handling code here:
+        this.jaroRadio.setSelected(false);
+        this.levRadio.setSelected(true);
+    }//GEN-LAST:event_levRadioActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -370,11 +432,17 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.JButton connectButton;
     private javax.swing.JButton getSimilarityButton;
     private javax.swing.JTextField indexToRemove;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JRadioButton jaroRadio;
+    private javax.swing.JRadioButton levRadio;
     private javax.swing.JTextField numberOne;
     private javax.swing.JTextField numberTwo;
     private javax.swing.JButton removeButton;

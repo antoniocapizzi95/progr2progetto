@@ -48,8 +48,8 @@ public class SimilarityServerIO {
         SimilarityServerIO.executePost("http://"+address+":"+port+"/upload/", "c," + content);
     }
 
-    public static String getSR(String index1, String index2) throws MalformedURLException, IOException {
-        
+    public static String getSR(String index1, String index2, String alg) throws MalformedURLException, IOException {
+        SimilarityServerIO.executePost("http://"+address+":"+port+"/setAlg/", alg);
         SimilarityServerIO.executePost("http://"+address+":"+port+"/setIndex/", index1);
         SimilarityServerIO.executePost("http://"+address+":"+port+"/setIndex/", index2);
         String result = null;
