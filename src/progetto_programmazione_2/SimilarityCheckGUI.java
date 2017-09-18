@@ -46,7 +46,6 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
         uploadButton = new javax.swing.JButton();
         showUploadedButton = new javax.swing.JButton();
         getSimilarityButton = new javax.swing.JButton();
-        similarityLabel = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         numberOne = new javax.swing.JTextField();
         numberTwo = new javax.swing.JTextField();
@@ -84,11 +83,9 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
             }
         });
 
-        similarityLabel.setText("The similarity rate is:");
-
         jLabel1.setText("Select the ID of files to compare");
 
-        jLabel2.setText("Remove an uploaded file");
+        jLabel2.setText("Remove an uploaded file, write the ID");
 
         removeButton.setText("Remove");
         removeButton.setEnabled(false);
@@ -138,20 +135,16 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(removeButton))
                             .addComponent(connectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(getSimilarityButton)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(getSimilarityButton)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(numberOne, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(numberTwo, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(26, 26, 26)
-                                .addComponent(similarityLabel)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jaroRadio, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(levRadio, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(133, 133, 133))
+                                .addComponent(numberOne, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(numberTwo, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jaroRadio, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                            .addComponent(levRadio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(106, 106, 106))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(uploadButton, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -181,8 +174,7 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(numberOne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(numberTwo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(similarityLabel))
+                    .addComponent(numberTwo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(getSimilarityButton)
                 .addGap(51, 51, 51)
@@ -450,7 +442,6 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
     private javax.swing.JTextField numberTwo;
     private javax.swing.JButton removeButton;
     private javax.swing.JButton showUploadedButton;
-    private javax.swing.JLabel similarityLabel;
     private javax.swing.JButton uploadButton;
     // End of variables declaration//GEN-END:variables
 
