@@ -85,7 +85,7 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
 
         jLabel1.setText("Select the ID of files to compare");
 
-        jLabel2.setText("Remove an uploaded file");
+        jLabel2.setText("Remove an uploaded file, write the ID");
 
         removeButton.setText("Remove");
         removeButton.setEnabled(false);
