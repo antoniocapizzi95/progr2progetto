@@ -313,7 +313,7 @@ public class GUI extends javax.swing.JFrame {
 
     private void replaceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_replaceButtonActionPerformed
         // TODO add your handling code here:
-        int count = StringManipulating.searchAndCount(this.modifiedTxt, this.labelToInput.getText());
+        int count = StringManipulation.searchAndCount(this.modifiedTxt, this.labelToInput.getText());
         if (this.labelToInput.getText().equals("") || this.labelToReplace.getText().equals("") || count == 0) {
             JFrame f = new JFrame();
             ErrorDialog error = new ErrorDialog(f, true, "Some field is empty");
@@ -322,9 +322,9 @@ public class GUI extends javax.swing.JFrame {
 
             if (count == 1) {
                 
-                this.modifiedTxt = StringManipulating.replace(this.modifiedTxt, this.labelToInput.getText(), this.labelToReplace.getText());
+                this.modifiedTxt = StringManipulation.replace(this.modifiedTxt, this.labelToInput.getText(), this.labelToReplace.getText());
             } else if(count > 1) {
-                this.modifiedTxt = StringManipulating.replaceOccurenceOpenDialog(this.modifiedTxt, this.labelToInput.getText(), this.labelToReplace.getText(), "Simple Replace");
+                this.modifiedTxt = StringManipulation.replaceOccurenceOpenDialog(this.modifiedTxt, this.labelToInput.getText(), this.labelToReplace.getText(), "Simple Replace");
             }
         }
 
@@ -344,15 +344,15 @@ public class GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         int count;
-        count = StringManipulating.searchAndCount(modifiedTxt, this.labelToInput.getText());
+        count = StringManipulation.searchAndCount(modifiedTxt, this.labelToInput.getText());
         this.searchLabel.setText("This string is present: " + Integer.toString(count) + " times");
     }//GEN-LAST:event_searchAndCountButtonActionPerformed
 
     private void toUpperButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toUpperButtonActionPerformed
         // TODO add your handling code here:
         int num = 0;
-        num = StringManipulating.searchAndCount(modifiedTxt, this.labelToInput.getText());
-        if(num>0) this.modifiedTxt = StringManipulating.replaceToUpper(modifiedTxt, this.labelToInput.getText());
+        num = StringManipulation.searchAndCount(modifiedTxt, this.labelToInput.getText());
+        if(num>0) this.modifiedTxt = StringManipulation.replaceToUpper(modifiedTxt, this.labelToInput.getText());
         else {
             JFrame f = new JFrame();
             ErrorDialog ed = new ErrorDialog(f,true,"This string is not present");
@@ -363,13 +363,13 @@ public class GUI extends javax.swing.JFrame {
     private void appendTailButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_appendTailButtonActionPerformed
         // TODO add your handling code here:
         
-        this.modifiedTxt = StringManipulating.appendTail(this.modifiedTxt, this.labelToInput.getText());
+        this.modifiedTxt = StringManipulation.appendTail(this.modifiedTxt, this.labelToInput.getText());
     }//GEN-LAST:event_appendTailButtonActionPerformed
 
     private void appendHeadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_appendHeadButtonActionPerformed
         // TODO add your handling code here:
         
-        this.modifiedTxt = StringManipulating.appendHead(this.modifiedTxt, this.labelToInput.getText());
+        this.modifiedTxt = StringManipulation.appendHead(this.modifiedTxt, this.labelToInput.getText());
     }//GEN-LAST:event_appendHeadButtonActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
@@ -413,19 +413,19 @@ public class GUI extends javax.swing.JFrame {
     private void buttonReplaceRegexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonReplaceRegexActionPerformed
         // TODO add your handling code here:
         int index = this.comboBoxRegex.getSelectedIndex();
-        this.modifiedTxt = StringManipulating.replaceRegex(this.modifiedTxt, this.replaceTextRegex.getText(), index);
+        this.modifiedTxt = StringManipulation.replaceRegex(this.modifiedTxt, this.replaceTextRegex.getText(), index);
     }//GEN-LAST:event_buttonReplaceRegexActionPerformed
 
     private void deleteButtonRegexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonRegexActionPerformed
         // TODO add your handling code here:
         int index = this.comboBoxRegex.getSelectedIndex();
-        this.modifiedTxt = StringManipulating.replaceRegex(this.modifiedTxt, "", index);
+        this.modifiedTxt = StringManipulation.replaceRegex(this.modifiedTxt, "", index);
     }//GEN-LAST:event_deleteButtonRegexActionPerformed
 
     private void searchAndCountRegexButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchAndCountRegexButtonActionPerformed
         // TODO add your handling code here:
         int index = this.comboBoxRegex.getSelectedIndex();
-        int count = StringManipulating.searchAndCountRegex(this.modifiedTxt, index);
+        int count = StringManipulation.searchAndCountRegex(this.modifiedTxt, index);
         this.searchLabel.setText("This type of string is present: " + Integer.toString(count) + " times");
     }//GEN-LAST:event_searchAndCountRegexButtonActionPerformed
 
@@ -439,8 +439,8 @@ public class GUI extends javax.swing.JFrame {
     private void toLowerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toLowerButtonActionPerformed
         // TODO add your handling code here:
         int num = 0;
-        num = StringManipulating.searchAndCount(modifiedTxt, this.labelToInput.getText());
-        if(num>0) this.modifiedTxt = StringManipulating.replaceToLower(modifiedTxt, this.labelToInput.getText());
+        num = StringManipulation.searchAndCount(modifiedTxt, this.labelToInput.getText());
+        if(num>0) this.modifiedTxt = StringManipulation.replaceToLower(modifiedTxt, this.labelToInput.getText());
         else {
             JFrame f = new JFrame();
             ErrorDialog ed = new ErrorDialog(f,true,"This string is not present");

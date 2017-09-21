@@ -13,7 +13,7 @@ import javax.swing.JFrame;
  *
  * @author Antonio
  */
-public class StringManipulating {
+public class StringManipulation {
 
     public static String modifiedTxt = null;
 
@@ -50,13 +50,13 @@ public class StringManipulating {
     public static String replaceToUpper(String str, String toReplace) {
         String modified = null;
         int count;
-        count = StringManipulating.searchAndCount(str, toReplace);
+        count = StringManipulation.searchAndCount(str, toReplace);
         if (count == 0) {
 
         } else if (count == 1) {
             modified = str.replace(toReplace, toReplace.toUpperCase());
         } else if (count > 1) {
-            modified = StringManipulating.replaceOccurenceOpenDialog(str, toReplace, toReplace.toUpperCase(), "Replace to Upper Case");
+            modified = StringManipulation.replaceOccurenceOpenDialog(str, toReplace, toReplace.toUpperCase(), "Replace to Upper Case");
         }
 
         return modified;
@@ -65,13 +65,13 @@ public class StringManipulating {
     public static String replaceToLower(String str, String toReplace) {
         String modified = null;
         int count;
-        count = StringManipulating.searchAndCount(str, toReplace);
+        count = StringManipulation.searchAndCount(str, toReplace);
         if (count == 0) {
 
         } else if (count == 1) {
             modified = str.replace(toReplace, toReplace.toLowerCase());
         } else if (count > 1) {
-            modified = StringManipulating.replaceOccurenceOpenDialog(str, toReplace, toReplace.toUpperCase(), "Replace to Lower Case");
+            modified = StringManipulation.replaceOccurenceOpenDialog(str, toReplace, toReplace.toUpperCase(), "Replace to Lower Case");
         }
         return modified;
     }
@@ -82,7 +82,7 @@ public class StringManipulating {
         ReplaceDialog repDial = new ReplaceDialog(f, true, typeOfReplace, modifiedTxt, input, toReplace);
         repDial.setModal(true);
         repDial.setVisible(true);
-        newString = StringManipulating.modifiedTxt;
+        newString = StringManipulation.modifiedTxt;
         return newString;
     }
 
@@ -156,7 +156,7 @@ public class StringManipulating {
             Matcher matcher = pattern.matcher(str);
 
             while (matcher.find()) {
-                newString = StringManipulating.replace(newString, matcher.group(), toReplace);
+                newString = StringManipulation.replace(newString, matcher.group(), toReplace);
             }
         }
 
@@ -166,7 +166,7 @@ public class StringManipulating {
             Matcher matcher = pattern.matcher(str);
 
             while (matcher.find()) {
-                newString = StringManipulating.replace(newString, matcher.group(), toReplace);
+                newString = StringManipulation.replace(newString, matcher.group(), toReplace);
 
             }
         }
@@ -177,7 +177,7 @@ public class StringManipulating {
             Matcher matcher = pattern.matcher(str);
 
             while (matcher.find()) {
-                newString = StringManipulating.replace(newString, matcher.group(), toReplace);
+                newString = StringManipulation.replace(newString, matcher.group(), toReplace);
             }
         }
 

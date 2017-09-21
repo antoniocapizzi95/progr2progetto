@@ -27,7 +27,7 @@ public class ReplaceDialog extends javax.swing.JDialog {
         this.toSearch = toSearch;
         this.toReplace = toReplace;
         initComponents();
-        int count = StringManipulating.searchAndCount(text, toSearch);
+        int count = StringManipulation.searchAndCount(text, toSearch);
         String countStr = Integer.toString(count);
         this.countLabel.setText("This string is present: "+countStr+" times");
         this.titleLabel.setText(title);
@@ -129,8 +129,8 @@ public class ReplaceDialog extends javax.swing.JDialog {
     private void replaceAllButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_replaceAllButtonActionPerformed
         // TODO add your handling code here:
         
-        this.text = StringManipulating.replace(this.text, this.toSearch, this.toReplace);
-        StringManipulating.modifiedTxt = this.text;
+        this.text = StringManipulation.replace(this.text, this.toSearch, this.toReplace);
+        StringManipulation.modifiedTxt = this.text;
         this.setVisible(false);
     }//GEN-LAST:event_replaceAllButtonActionPerformed
 
@@ -139,10 +139,10 @@ public class ReplaceDialog extends javax.swing.JDialog {
         
         int occurence = Integer.parseInt(this.fieldOccurence.getText());
         int count;
-        count = StringManipulating.searchAndCount(this.text, this.toSearch);
+        count = StringManipulation.searchAndCount(this.text, this.toSearch);
         if ((this.fieldOccurence.getText() != null || this.fieldOccurence.getText().length() != 0) && occurence > 0 && occurence <= count) {
-            this.text = StringManipulating.replaceOccurence(this.text, this.toSearch, this.toReplace, occurence);
-            StringManipulating.modifiedTxt = this.text;
+            this.text = StringManipulation.replaceOccurence(this.text, this.toSearch, this.toReplace, occurence);
+            StringManipulation.modifiedTxt = this.text;
             this.setVisible(false);
         } else {
             this.errorLabel.setText("Error: insert a number between 1 and "+Integer.toString(count)+" in the occurence field");

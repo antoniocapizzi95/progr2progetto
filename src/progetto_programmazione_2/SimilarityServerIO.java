@@ -43,7 +43,7 @@ public class SimilarityServerIO {
     private static String port;
 
     public static void sendToServer(String title, String content) throws MalformedURLException,IOException{
-        title = StringManipulating.replace(title, ".txt", "");
+        title = StringManipulation.replace(title, ".txt", "");
         SimilarityServerIO.executePost("http://"+address+":"+port+"/upload/", "t," + title);
         SimilarityServerIO.executePost("http://"+address+":"+port+"/upload/", "c," + content);
     }
