@@ -350,13 +350,28 @@ public class GUI extends javax.swing.JFrame {
 
     private void toUpperButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toUpperButtonActionPerformed
         // TODO add your handling code here:
-        int num = 0;
+        /*int num = 0;
         num = StringManipulation.searchAndCount(modifiedTxt, this.labelToInput.getText());
         if(num>0) this.modifiedTxt = StringManipulation.replaceToUpper(modifiedTxt, this.labelToInput.getText());
         else {
             JFrame f = new JFrame();
             ErrorDialog ed = new ErrorDialog(f,true,"This string is not present");
             ed.setVisible(true);
+        }*/
+        int count = StringManipulation.searchAndCount(this.modifiedTxt, this.labelToInput.getText());
+        if (this.labelToInput.getText().equals("") || count == 0) {
+            JFrame f = new JFrame();
+            ErrorDialog error = new ErrorDialog(f, true, "Some field is empty");
+            error.setVisible(true);
+        } else {
+
+            String rep = this.labelToInput.getText();
+            if (count == 1) {
+                
+                this.modifiedTxt = StringManipulation.replace(this.modifiedTxt, this.labelToInput.getText(), rep.toUpperCase());
+            } else if(count > 1) {
+                this.modifiedTxt = StringManipulation.replaceOccurenceOpenDialog(this.modifiedTxt, this.labelToInput.getText(), rep.toUpperCase(), "Simple Replace");
+            }
         }
     }//GEN-LAST:event_toUpperButtonActionPerformed
 
@@ -438,13 +453,28 @@ public class GUI extends javax.swing.JFrame {
 
     private void toLowerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toLowerButtonActionPerformed
         // TODO add your handling code here:
-        int num = 0;
+        /*int num = 0;
         num = StringManipulation.searchAndCount(modifiedTxt, this.labelToInput.getText());
         if(num>0) this.modifiedTxt = StringManipulation.replaceToLower(modifiedTxt, this.labelToInput.getText());
         else {
             JFrame f = new JFrame();
             ErrorDialog ed = new ErrorDialog(f,true,"This string is not present");
             ed.setVisible(true);
+        }*/
+        int count = StringManipulation.searchAndCount(this.modifiedTxt, this.labelToInput.getText());
+        if (this.labelToInput.getText().equals("") || count == 0) {
+            JFrame f = new JFrame();
+            ErrorDialog error = new ErrorDialog(f, true, "Some field is empty");
+            error.setVisible(true);
+        } else {
+
+            String rep = this.labelToInput.getText();
+            if (count == 1) {
+                
+                this.modifiedTxt = StringManipulation.replace(this.modifiedTxt, this.labelToInput.getText(), rep.toLowerCase());
+            } else if(count > 1) {
+                this.modifiedTxt = StringManipulation.replaceOccurenceOpenDialog(this.modifiedTxt, this.labelToInput.getText(), rep.toLowerCase(), "Simple Replace");
+            }
         }
     }//GEN-LAST:event_toLowerButtonActionPerformed
 
