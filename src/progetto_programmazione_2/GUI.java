@@ -37,7 +37,7 @@ public class GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        titleLabel = new javax.swing.JLabel();
         importButton = new javax.swing.JButton();
         readText = new javax.swing.JLabel();
         replaceButton = new javax.swing.JButton();
@@ -64,7 +64,7 @@ public class GUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Title");
+        titleLabel.setText("Title");
 
         importButton.setText("Import");
         importButton.addActionListener(new java.awt.event.ActionListener() {
@@ -189,7 +189,7 @@ public class GUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(0, 554, Short.MAX_VALUE)
                                 .addComponent(saveButton)))
@@ -252,7 +252,7 @@ public class GUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
@@ -309,6 +309,7 @@ public class GUI extends javax.swing.JFrame {
         this.modifiedTxt = file.getTextFile();
         if(this.modifiedTxt != null) this.enableAllButtons();
         else this.disableAllButtons();
+        this.titleLabel.setText("Title: "+file.getFileName());
     }//GEN-LAST:event_importButton
 
     private void replaceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_replaceButtonActionPerformed
@@ -547,7 +548,6 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboBoxRegex;
     private javax.swing.JButton deleteButtonRegex;
     private javax.swing.JButton importButton;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -563,6 +563,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton searchAndCountRegexButton;
     private javax.swing.JLabel searchLabel;
     private javax.swing.JButton similarityButton;
+    private javax.swing.JLabel titleLabel;
     private javax.swing.JButton toLowerButton;
     private javax.swing.JButton toUpperButton;
     // End of variables declaration//GEN-END:variables
