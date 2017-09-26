@@ -97,7 +97,7 @@ public class ImportTextFile {
                     if (s == null) {
                         break;
                     }
-                    fileContent = fileContent.concat(s);
+                    fileContent = fileContent + nextLine + s;
                 }
             } catch (IOException ex) {
                 Logger.getLogger(ImportTextFile.class.getName()).log(Level.SEVERE, null, ex);
