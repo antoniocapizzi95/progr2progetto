@@ -16,6 +16,7 @@ import java.net.MalformedURLException;
 import java.net.Socket;
 import java.net.URL;
 import java.net.URLConnection;
+import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  *
@@ -38,22 +39,28 @@ public class SimilarityServerIO {
     public static void setPort(String port) {
         SimilarityServerIO.port = port;
     }
-    
+
     private static String address;
     private static String port;
 
-    public static void sendToServer(String title, String content) throws MalformedURLException,IOException{
+    public static boolean sendToServer(String title, String content) throws MalformedURLException, IOException {
         title = StringManipulation.replace(title, ".txt", "");
-        SimilarityServerIO.executePost("http://"+address+":"+port+"/upload/", "t," + title);
-        SimilarityServerIO.executePost("http://"+address+":"+port+"/upload/", "c," + content);
+        boolean res = SimilarityServerIO.fileIsPresent(SimilarityServerIO.generateMD5(content));
+        if (!res) {
+            SimilarityServerIO.executePost("http://" + address + ":" + port + "/upload/", "t," + title);
+            SimilarityServerIO.executePost("http://" + address + ":" + port + "/upload/", "c," + content);
+            return true;
+        } else 
+            return false;
+
     }
 
     public static String getSR(String index1, String index2, String alg) throws MalformedURLException, IOException {
-        SimilarityServerIO.executePost("http://"+address+":"+port+"/setAlg/", alg);
-        SimilarityServerIO.executePost("http://"+address+":"+port+"/setIndex/", index1);
-        SimilarityServerIO.executePost("http://"+address+":"+port+"/setIndex/", index2);
+        SimilarityServerIO.executePost("http://" + address + ":" + port + "/setAlg/", alg);
+        SimilarityServerIO.executePost("http://" + address + ":" + port + "/setIndex/", index1);
+        SimilarityServerIO.executePost("http://" + address + ":" + port + "/setIndex/", index2);
         String result = null;
-        URL url = new URL("http://"+address+":"+port+"/getSR/");
+        URL url = new URL("http://" + address + ":" + port + "/getSR/");
         URLConnection conn = url.openConnection();
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(
@@ -62,15 +69,17 @@ public class SimilarityServerIO {
 
         while ((inputLine = in.readLine()) != null) {
             System.out.println(inputLine);
-            if(inputLine != null) result = inputLine;
+            if (inputLine != null) {
+                result = inputLine;
+            }
         }
         in.close();
         return result;
     }
-    
+
     public static String getUploaded() throws MalformedURLException, IOException {
         String result = null;
-        URL url = new URL("http://"+address+":"+port+"/getFUSituation/");
+        URL url = new URL("http://" + address + ":" + port + "/getFUSituation/");
         URLConnection conn = url.openConnection();
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(
@@ -79,7 +88,9 @@ public class SimilarityServerIO {
 
         while ((inputLine = in.readLine()) != null) {
             System.out.println(inputLine);
-            if(inputLine != null) result = inputLine;
+            if (inputLine != null) {
+                result = inputLine;
+            }
         }
         in.close();
         result = result.replace("-", "\n");
@@ -87,10 +98,10 @@ public class SimilarityServerIO {
         result = "ID - Title \n" + result;
         return result;
     }
-    
+
     public static int getNumberOfUploaded() throws MalformedURLException, IOException {
         String result = null;
-        URL url = new URL("http://"+address+":"+port+"/getNumber/");
+        URL url = new URL("http://" + address + ":" + port + "/getNumber/");
         URLConnection conn = url.openConnection();
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(
@@ -99,17 +110,19 @@ public class SimilarityServerIO {
 
         while ((inputLine = in.readLine()) != null) {
             System.out.println(inputLine);
-            if(inputLine != null) result = inputLine;
+            if (inputLine != null) {
+                result = inputLine;
+            }
         }
         in.close();
         return Integer.parseInt(result);
     }
-    
+
     public static void removeFile(String index) throws IOException {
-        SimilarityServerIO.executePost("http://"+address+":"+port+"/removeFile/", index);
+        SimilarityServerIO.executePost("http://" + address + ":" + port + "/removeFile/", index);
     }
 
-    private static String executePost(String targetURL, String urlParameters) throws MalformedURLException, IOException{
+    private static String executePost(String targetURL, String urlParameters) throws MalformedURLException, IOException {
         HttpURLConnection connection = null;
 
         try {
@@ -151,6 +164,23 @@ public class SimilarityServerIO {
             if (connection != null) {
                 connection.disconnect();
             }
+        }
+    }
+
+    public static String generateMD5(String content) {
+        String contentMod = content.replace("\n", "");
+        contentMod = contentMod.replace("\r", "");
+        String hashContent = DigestUtils.md5Hex(contentMod).toUpperCase();
+        return hashContent;
+    }
+
+    public static boolean fileIsPresent(String md5) throws IOException {
+        String result = SimilarityServerIO.executePost("http://" + address + ":" + port + "/fileIsPresent/", md5);
+      
+        if (result.equals("\u0001\r")) {
+            return true;
+        } else {
+            return false;
         }
     }
 

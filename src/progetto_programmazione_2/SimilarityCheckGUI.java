@@ -200,12 +200,19 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
         try {
             SimilarityServerIO.getNumberOfUploaded();
             JFrame fr = new JFrame();
-            MessageDialog md = new MessageDialog(fr,false,"Uploading, please wait",false);
+            MessageDialog md = new MessageDialog(fr, false, "Uploading, please wait", false);
             md.setVisible(true);
-            SimilarityServerIO.sendToServer(title, text);
-            md.setVisible(false);
-            md = new MessageDialog(fr,true,"Upload completed",true);
-            md.setVisible(true);
+            boolean res = SimilarityServerIO.sendToServer(title, text);
+            if(res) {
+                md.setVisible(false);
+                md = new MessageDialog(fr, true, "Upload completed", true);
+                md.setVisible(true);
+            } else {
+                md.setVisible(false);
+                md = new MessageDialog(fr, true, "The file is already present on server", true);
+                md.setVisible(true);
+            }
+
         } catch (IOException ex) {
             String mess = ex.getMessage();
             if (mess.equals("Connection refused: connect") || mess.equals("Connection refused (Connection refused)")) {
@@ -221,13 +228,13 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
     private void getSimilarityButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getSimilarityButtonActionPerformed
         // TODO add your handling code here:
         String result = null;
-        
+
         String alg = null;
 
-        if(this.jaroRadio.isSelected()) {
+        if (this.jaroRadio.isSelected()) {
             alg = "jaro";
         }
-        if(this.levRadio.isSelected()) {
+        if (this.levRadio.isSelected()) {
             alg = "lev";
         }
         int numberOne;
@@ -237,7 +244,7 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
             numberTwo = Integer.parseInt(this.numberTwo.getText());
             try {
                 if ((numberOne > 0 && numberTwo > 0) && (numberOne <= SimilarityServerIO.getNumberOfUploaded() && numberTwo <= SimilarityServerIO.getNumberOfUploaded())) {
-                    result = SimilarityServerIO.getSR(this.numberOne.getText(), this.numberTwo.getText(),alg);
+                    result = SimilarityServerIO.getSR(this.numberOne.getText(), this.numberTwo.getText(), alg);
                 } else {
                     JFrame fr = new JFrame();
                     try {
@@ -270,7 +277,7 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
         }
         //similarityLabel.setText("The similarity rate is: " + result + "%");
         JFrame frame = new JFrame();
-        MessageDialog md = new MessageDialog(frame,true,"The similarity rate is: " + result + "%",true);
+        MessageDialog md = new MessageDialog(frame, true, "The similarity rate is: " + result + "%", true);
         md.setVisible(true);
 
     }//GEN-LAST:event_getSimilarityButtonActionPerformed
@@ -347,11 +354,10 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
         ImportTextFile im = new ImportTextFile();
         try {
             im.importFile("param.json");
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             System.out.println("file non trovato");
             JFrame f = new JFrame();
-            CreateJSONDialog cjd = new CreateJSONDialog(f,true);
+            CreateJSONDialog cjd = new CreateJSONDialog(f, true);
             cjd.setVisible(true);
         }
         String param = im.getTextFile();
@@ -364,7 +370,7 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
             SimilarityServerIO.getNumberOfUploaded();
             this.enableButtons();
             JFrame f = new JFrame();
-            MessageDialog md = new MessageDialog(f,false,"Connection with server completed",true);
+            MessageDialog md = new MessageDialog(f, false, "Connection with server completed", true);
             md.setVisible(true);
         } catch (IOException ex) {
             Logger.getLogger(SimilarityCheckGUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -445,5 +451,4 @@ public class SimilarityCheckGUI extends javax.swing.JFrame {
     private javax.swing.JButton uploadButton;
     // End of variables declaration//GEN-END:variables
 
-   
 }
