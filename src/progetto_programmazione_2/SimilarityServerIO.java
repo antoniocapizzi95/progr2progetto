@@ -17,6 +17,7 @@ import java.net.Socket;
 import java.net.URL;
 import java.net.URLConnection;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.json.JSONObject;
 
 /**
  *
@@ -47,8 +48,10 @@ public class SimilarityServerIO {
         title = StringManipulation.replace(title, ".txt", "");
         boolean res = SimilarityServerIO.fileIsPresent(SimilarityServerIO.generateMD5(content));
         if (!res) {
-            SimilarityServerIO.executePost("http://" + address + ":" + port + "/upload/", "t," + title);
-            SimilarityServerIO.executePost("http://" + address + ":" + port + "/upload/", "c," + content);
+            /*SimilarityServerIO.executePost("http://" + address + ":" + port + "/upload/", "t," + title);
+            SimilarityServerIO.executePost("http://" + address + ":" + port + "/upload/", "c," + content);*/
+            JSONObject obj = new JSONObject("{\"title\": \""+title+"\",\"content\": \""+content+"\",\"md5\": \""+SimilarityServerIO.generateMD5(content)+"\"}");
+            SimilarityServerIO.executePost("http://" + address + ":" + port + "/upload/", obj.toString());
             return true;
         } else 
             return false;
@@ -120,6 +123,13 @@ public class SimilarityServerIO {
 
     public static void removeFile(String index) throws IOException {
         SimilarityServerIO.executePost("http://" + address + ":" + port + "/removeFile/", index);
+    }
+    
+    public static String readFile(String index) throws IOException {
+        SimilarityServerIO.executePost("http://" + address + ":" + port + "/setIndex/", index);
+        SimilarityServerIO.executePost("http://" + address + ":" + port + "/setIndex/", "0");
+        String res = SimilarityServerIO.executePost("http://" + address + ":" + port + "/readFile/", index);
+        return res;
     }
 
     private static String executePost(String targetURL, String urlParameters) throws MalformedURLException, IOException {
