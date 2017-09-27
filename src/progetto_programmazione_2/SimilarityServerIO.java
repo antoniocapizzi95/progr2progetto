@@ -128,8 +128,23 @@ public class SimilarityServerIO {
     public static String readFile(String index) throws IOException {
         SimilarityServerIO.executePost("http://" + address + ":" + port + "/setIndex/", index);
         SimilarityServerIO.executePost("http://" + address + ":" + port + "/setIndex/", "0");
-        String res = SimilarityServerIO.executePost("http://" + address + ":" + port + "/readFile/", index);
-        return res;
+        /*String res = SimilarityServerIO.executePost("http://" + address + ":" + port + "/readFile/", index);
+        return res;*/
+        String result = null;
+        URL url = new URL("http://" + address + ":" + port + "/readFile/");
+        URLConnection conn = url.openConnection();
+        BufferedReader in = new BufferedReader(
+                new InputStreamReader(conn.getInputStream()));
+        String inputLine;
+
+        while ((inputLine = in.readLine()) != null) {
+            System.out.println(inputLine);
+            if (inputLine != null) {
+                result = inputLine;
+            }
+        }
+        in.close();
+        return result;
     }
 
     private static String executePost(String targetURL, String urlParameters) throws MalformedURLException, IOException {
