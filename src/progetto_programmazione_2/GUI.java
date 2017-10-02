@@ -138,7 +138,7 @@ public class GUI extends javax.swing.JFrame {
 
         jLabel5.setText("Select regex");
 
-        comboBoxRegex.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "E-Mail", "Fiscal Code", "Date", "Item 4" }));
+        comboBoxRegex.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "E-Mail", "Fiscal Code", "Date" }));
 
         buttonReplaceRegex.setText("Replace with");
         buttonReplaceRegex.setEnabled(false);
@@ -217,7 +217,7 @@ public class GUI extends javax.swing.JFrame {
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addComponent(labelToInput)
-                                        .addComponent(searchAndCountButton, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
+                                        .addComponent(searchAndCountButton, javax.swing.GroupLayout.PREFERRED_SIZE, 147, Short.MAX_VALUE))
                                     .addGap(35, 35, 35)
                                     .addComponent(appendHeadButton)
                                     .addGap(37, 37, 37)
